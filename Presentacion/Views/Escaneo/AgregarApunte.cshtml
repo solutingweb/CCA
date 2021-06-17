@@ -1,0 +1,26 @@
+﻿@model Negocio.N_Apunte
+<!DOCTYPE html>
+<html lang="es">
+<body>
+    <form action="/Escaneo/InsertarApunte" method="post">
+        <div class="col-md-12">
+            <br />
+            <label Class="control-label col-md-2">Título del Apunte</label>
+            <div Class="col-md-10">
+                <input id="tituloApunte" type="text" required name="tituloApunte" />
+            </div>
+            <label Class="control-label col-md-2">Cantidad de Stock</label>
+            <div Class="col-md-10">
+                <input id="Stock" name="Stock" type="number" required maxlength="3" />
+            </div>
+            <label Class="control-label col-md-2">Cantidad de Hojas</label>
+            <div Class="col-md-10">
+                <input id="cantidadHojas" type="number" required name="cantidadHojas" maxlength="4" />
+            </div>
+            <br />
+            <div Class="col-md-10">
+                <input type="submit" class="btn btn-primary" value="Agregar" />
+            </div>
+        </div>
+    </form>
+</body>
