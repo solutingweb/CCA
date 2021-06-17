@@ -11,16 +11,40 @@ namespace Negocio
         public int ? IdProfesorApunte { get; set; }
         public int IdProfesor { get; set; }
         public string NombreApunte { get; set; }     
-        public string Digitalizado { get; set; }   
+        public string Digitalizado { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
         public byte Estado { get; set; }
         public Negocio.Enumerables.Estados.TipoEstado TipoEstado { get; set; }
- 
-       
 
-
-
-        public N_ProfesorApunte()
-        { }
+        //AGREGADO LUCHO-
+        public static List<N_ProfesorApunte> ListardeNoactualizados()
+        {
+            List<N_ProfesorApunte> listaprofesorapunte = new List<N_ProfesorApunte>();
+            DataTable dt = Datos.ProfesorApunte.ListarNoDigitalizados();
+            foreach (DataRow item in dt.Rows)
+            {
+                listaprofesorapunte.Add(armaslistadenoactualizados(item));
+            }
+            return listaprofesorapunte;
+        }
+        private static N_ProfesorApunte armaslistadenoactualizados(DataRow dr)
+        {
+            N_ProfesorApunte profesorApunte = new N_ProfesorApunte();
+            profesorApunte.IdProfesorApunte = Convert.ToInt32(dr["id_ProfesorApunter"]);
+            profesorApunte.IdProfesor = Convert.ToInt32(dr["id_Profesor"]);
+            profesorApunte.Estado = Convert.ToByte(dr["id_Profesor"]);
+            profesorApunte.NombreApunte = dr["nombreApunte"].ToString();
+            profesorApunte.Nombre = dr["nombre"].ToString();
+            profesorApunte.Apellidos = dr["apellidos"].ToString();
+            profesorApunte.Digitalizado = dr["digitalizado"].ToString();
+            return profesorApunte;
+        }
+        public void Digitalizar(int IdProfesorApunte)
+        {
+            Datos.ProfesorApunte.Digitalizar(IdProfesorApunte);
+        }
+        //-
 
         private static N_ProfesorApunte ArmarDatos(DataRow dr)
         {

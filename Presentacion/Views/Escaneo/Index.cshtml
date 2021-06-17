@@ -1,7 +1,37 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
+﻿@model List<Negocio.N_ProfesorApunte>
+<!DOCTYPE html>
+<html lang="es">
+<body>
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+            <th>Apunte</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Digitalizado</th>
+            <th></th>
+            </thead>
+            <tbody>
+                @foreach (Negocio.N_ProfesorApunte item in Negocio.N_ProfesorApunte.ListardeNoactualizados())
+                 {
+                    <tr>
+                        <td>
+                            @item.NombreApunte
+                        </td>
+                        <td>
+                            @item.Nombre
+                        </td>
+                        <td>
+                            @item.Apellidos
+                        </td>
+                        <td>
+                            @item.Digitalizado
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="/Escaneo/AgregarApunte/@item.IdProfesorApunte">Digitalizar</a>
+                        </td>
+                    </tr>
+                 }
+        </table>
+    </div>
+</body>

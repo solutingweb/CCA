@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerables\Estados.cs" />
+    <Compile Include="N_Apunte.cs" />
     <Compile Include="N_ProfesorApunte.cs" />
     <Compile Include="N_Profesor.cs" />
     <Compile Include="N_Usuario.cs" />

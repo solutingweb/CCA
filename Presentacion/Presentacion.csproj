@@ -1999,6 +1999,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Profesor\LibroProfesor.cshtml" />
     <Content Include="Views\Profesor\AgregarLibro.cshtml" />
+    <Content Include="Views\Escaneo\AgregarApunte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

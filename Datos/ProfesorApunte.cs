@@ -143,6 +143,51 @@ namespace Datos
             return DataTable;
 
         }
+
+        //AGREGADO LUCHO-
+        public static DataTable ListarNoDigitalizados()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("ListarProfesorApunteNOdigitalizado", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    var dataReader = cmd.ExecuteReader();
+                    dt.Load(dataReader);
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error ListarProfesorApunteNOdigitalizado" + ex.Message);
+            }
+
+        }
+        public static int Digitalizar(int Id_ProfesorApunter)
+        {
+            try
+            {
+                int id = 0;
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("DigitalizarLibro", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Id_ProfesorApunter", Id_ProfesorApunter));
+                    var dataReader = cmd.ExecuteReader();
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error Digitalizar" + ex.Message);
+            }
+
+        }
+        //-
     }
 }
 
