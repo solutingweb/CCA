@@ -1,0 +1,33 @@
+﻿.main {
+    height: 580px;
+    background-image: url("https://fondosmil.com/fondo/12547.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left;
+    background-size: cover;
+}
+
+.main {
+    color:black !important;
+    font-weight: 900;
+    font-size: xx-large;  
+    position:
+}
+
+h1 {
+    font-family: AEROI_, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    width: 100%;
+    margin: 0px auto;
+    color: #4368d6;
+    font-size: 70px;
+    letter-spacing: 5px;
+    top: 50%;
+    text-shadow: -1px -1px 0px black, 3px 3px 0px black /*, 6px 6px 0px blue*/;
+}
+
+
+@font-face {
+    font-family: 'AEROI_';
+    src: url('../../fonts/AEROI_.TTF') format('truetype');
+}

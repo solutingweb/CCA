@@ -1,0 +1,82 @@
+﻿@model Negocio.N_ProfesorApunte
+
+
+
+
+<div class="container">
+
+    <br />
+    <h1 style="text-align:center">Crear libro</h1>
+
+    <form action="/Profesor/Insertar" method="post" onsubmit="return Validacion()">
+
+        <div class=" form-group">
+            <label for="Nombre" class="control-label col-md-3">Identificador de Profesor</label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.IdProfesor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <div id="ErrorNombre" class="alert-danger col-md-2" style="width:260px"></div>
+            </div>
+        </div>
+
+        <div class=" form-group">
+            <label for="NombreApunte" class="control-label col-md-3">Escriba el nombre del Libro :</label>
+            <div class="col-md-3">
+                <input type="text" id="NombreApunte" name="NombreApunte" class="form-control" />
+                <div id="ErrorNombre" class="alert-danger col-md-2" style="width:260px"></div>
+            </div>
+        </div>
+
+        <div class="text-danger"><ul id="Errores"></ul></div>
+        <div class="form-horizontal">
+            <div class="form form-group">
+                <div class="form-group">
+                    <label for="Estado" class="control-label col-md-3">Estado actual</label>
+                    <div class="col-md-7">
+                        <select name="Estado" style="width:50%" onchange="lista(this.value)" , class="form-control right">
+                            <option value="0" selected>Recibido</option>
+                            <option value="1">Entregado</option>
+                        </select>
+                        <div id="ErrorEspecialidad" class="alert-danger col-md-2" style="width:260px"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Digitalizado" id="Digitalizado" class="control-label col-md-3">Digitalizado</label>
+                    <div class="col-md-7">
+                        <select name="Digitalizado" style="width:50%" onchange="lista(this.value)" , class="form-control right">
+                            <option value="NO" selected>NO</option>
+                            <option value="SI">SI</option>
+                        </select>
+                        <div id="ErrorMedico" class="alert-danger col-md-2" style="width:260px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" form-group">
+                <div class="col-md-offset-3 left col-md-10">
+                    <input type="submit" id="Correcto" value="Crear" class="btn btn-info">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div>
+        @Html.ActionLink("Volver a la lista de profesores", "Index")
+    </div>
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $('#tblUsuarios').DataTable(
+            {
+                //paging: false,
+                //ordering: false,
+
+            }
+        );
+    });
+
+</script>
