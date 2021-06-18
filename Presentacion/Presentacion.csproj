@@ -124,7 +124,9 @@
     <Compile Include="Controllers\EscaneoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
+    <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1969,7 +1971,6 @@
     <Content Include="CCA\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Scripts\Combo.js" />
     <Content Include="Scripts\Login.js" />
-    <Content Include="Scripts\Validacion.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1982,7 +1983,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Apuntes\Index.cshtml" />
+    <Content Include="Views\Apunte\Index.cshtml" />
     <Content Include="Views\Escaneo\Index.cshtml" />
     <Content Include="Views\Profesor\Index.cshtml" />
   </ItemGroup>
@@ -2000,6 +2001,8 @@
     <Content Include="Views\Profesor\LibroProfesor.cshtml" />
     <Content Include="Views\Profesor\AgregarLibro.cshtml" />
     <Content Include="Views\Escaneo\AgregarApunte.cshtml" />
+    <Content Include="Views\Venta\Index.cshtml" />
+    <Content Include="Views\Reserva\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">
