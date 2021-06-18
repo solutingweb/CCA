@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Negocio;
 
 namespace Presentacion.Controllers
 {
@@ -11,7 +12,8 @@ namespace Presentacion.Controllers
         // GET: Apuntes
         public ActionResult Index()
         {
-            return View();
+            List<N_Apunte> listaapuntes = N_Apunte.Listar();
+            return View(listaapuntes);
         }
     }
 }
