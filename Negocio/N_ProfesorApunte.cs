@@ -37,7 +37,7 @@ namespace Negocio
             profesorApunte.NombreApunte = dr["nombreApunte"].ToString();
             profesorApunte.Nombre = dr["nombre"].ToString();
             profesorApunte.Apellidos = dr["apellidos"].ToString();
-            profesorApunte.Digitalizado = dr["digitalizado"].ToString();
+            profesorApunte.Digitalizado = dr["digitalizados"].ToString();
             return profesorApunte;
         }
         public void Digitalizar(int IdProfesorApunte)

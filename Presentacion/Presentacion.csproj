@@ -120,11 +120,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ApunteController.cs" />
-    <Compile Include="Controllers\EscaneoController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProfesorController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controller\ApunteController.cs" />
+    <Compile Include="Controller\EscaneoController.cs" />
+    <Compile Include="Controller\HomeController.cs" />
+    <Compile Include="Controller\ProfesorController.cs" />
+    <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2000,6 +2000,9 @@
     <Content Include="Views\Profesor\LibroProfesor.cshtml" />
     <Content Include="Views\Profesor\AgregarLibro.cshtml" />
     <Content Include="Views\Escaneo\AgregarApunte.cshtml" />
+    <Content Include="Views\Usuario\Admin.cshtml" />
+    <Content Include="Views\Usuario\AgregarUsuario.cshtml" />
+    <Content Include="Views\Usuario\EditarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

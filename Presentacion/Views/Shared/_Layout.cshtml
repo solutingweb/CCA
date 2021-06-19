@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@model Negocio.N_Usuario
+@{
+    Negocio.N_Usuario usuario = Session["Usuario"] == null ? null : (Negocio.N_Usuario)Session["Usuario"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -75,7 +79,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="~/Escaneo/Index/">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Escaneo</span>
                 </a>
@@ -87,7 +91,15 @@
                     <span>Ventas</span>
                 </a>
             </li>
-
+            @if (usuario.id_Rol == 1)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Usuario/Admin/">
+                        <i class="fas fa-fw fa-times"></i>
+                        <span>Administrar Usuarios</span>
+                    </a>
+                </li>
+            }
             <li class="nav-item">
                 <a class="nav-link" href="~/Home/LogOut/">
                     <i class="fas fa-fw fa-times"></i>
@@ -104,8 +116,8 @@
             @RenderBody()
         </div>
     </div>
-    
-        @RenderSection("scripts", required: false)
+
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
