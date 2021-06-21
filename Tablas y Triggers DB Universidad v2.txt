@@ -1,0 +1,233 @@
+
+#########################################################################################################################################################################
+#																																										#
+#						TABLAS DE AUDITORIA EN DB CCA																													#
+#																																										#
+#########################################################################################################################################################################
+
+/*	EN ESTA TABLA SE DEBE GUARDAR LAS ACCIONES REALIZADAS POR EL PROGRAMA SOBRE LA TABLA APUNTE	*/
+CREATE TABLE [dbo].[AuditoriaApuntes]
+(
+	[id_AuditoriaApunte] [int] IDENTITY(1,1) NOT NULL,
+	[id_Apunte] [int] NULL,
+	[usuario] [varchar](70) NULL,
+	[hostname] [varchar](70) NULL,
+	[stockNuevo] [float] NULL,
+	[stockAnterior] [float] NULL,
+	[fechaCambio] [date] NULL,
+)
+
+
+/*	EN ESTA TABLA SE DEBE GUARDAR LAS ACCIONES REALIZADAS POR EL PROGRAMA SOBRE LA TABLA PROFESOR	*/
+CREATE TABLE [dbo].[AuditoriaProfesoresApuntes]
+(
+	[id_AuditoriaProfesoresAP] [int] IDENTITY(1,1) NOT NULL,
+	[id_ProfesorApunte] [int] NULL,
+	[usuario] [varchar](70) NULL,
+	[hostname] [varchar](70) NULL,
+	[estado] [bit] NULL,
+	[fechaCambio] [date] NULL,
+)
+
+/*	EN ESTA TABLA SE DEBE GUARDAR LAS ACCIONES REALIZADAS POR LA ACTUALIZACIONES GENERADAS POR LA INTERFACE ENTRE LA UNIVERSIDAD Y EN EL CCA  */
+CREATE TABLE [dbo].[AuditoriasInterface]
+(
+	[idAuditoriaInterfaces] [int] IDENTITY(1,1) NOT NULL,
+	[descripcion] [varchar](50) NULL,
+	[nombreTabla] [varchar](50) NULL,
+	[fechaAlta] [datetime] NULL,
+)
+
+
+
+#########################################################################################################################################################################
+#																																										#
+#						CREATE TABLE EN BASE DE LA UNIVERSIDAD																											#
+#																																										#
+#########################################################################################################################################################################
+
+Hay que crear una base llamada UNIVERSIDAD, y luego crear estas tablas, para poder simular la interaccion con la UNIVERSIDAD.
+
+CREATE TABLE [dbo].[Alumno]
+(
+	[Id_Alumno] [int] IDENTITY(1,1) NOT NULL,
+	[dni] [int] NULL,
+	[nombre] [varchar](70) NULL,
+	[apellidos] [varchar](70) NULL,
+	[edad] [int] NULL,
+	[email] [varchar](70) NULL,
+	[Id_carrera] [int] NULL,
+	[estado] [bit] NULL,
+	foreign key(Id_Carrera) references Carrera (Id_Carrera),
+)
+
+
+CREATE TABLE [dbo].[AlumnoMateria]
+(
+	[id_AlumnoMateria] [int] IDENTITY(1,1) NOT NULL,
+	[id_Materia] [int] NULL,
+	[id_Alumno] [int] NULL,
+	foreign key(Id_Materia) references Materia (Id_Materia),
+	foreign key(Id_Alumno) references Alumno (Id_Alumno),
+)
+
+
+CREATE TABLE [dbo].[Carrera]
+(
+	[id_Carrera] [int] IDENTITY(1,1) NOT NULL,
+	[nombre_carrera] [varchar](40) NULL,
+	[estado] [bit] NULL,
+)
+
+CREATE TABLE [dbo].[CarreraMateria]
+(
+	[id_CarreraMateria] [int] IDENTITY(1,1) NOT NULL,
+	[id_Materia] [int] NULL,
+	[id_Carrera] [int] NULL,
+	foreign key(Id_Materia) references Materia (Id_Materia),
+	foreign key(Id_Carrera) references Carrera (Id_Carrera),
+)
+
+
+CREATE TABLE [dbo].[Materia]
+(
+	[id_materia] [int] IDENTITY(1,1) NOT NULL,
+	[nombre_materia] [varchar](70) NULL,
+	[id_profesor] [int] NULL,
+	[nroApunte] [int] NULL,
+	[estado] [bit] NULL,
+	foreign key(Id_Profesor) references Profesor (Id_Profesor),
+)
+
+
+CREATE TABLE [dbo].[Profesor]
+(
+	[id_Profesor] [int] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](70) NULL,
+	[apellidos] [varchar](70) NULL,
+	[email] [varchar](70) NULL,
+	[estado] [bit] NULL,
+	[DNI] [varchar](30) NULL,
+)
+
+
+#########################################################################################################################################################################
+#																																										#
+#						TRIGGERS BASE DE DATOS UNIVERSIDAD - INSERT																										#
+#						estos triggers son los encargados de escribir en las tablas correspondientes del CCA, cuando hacen un INSERT									#
+#########################################################################################################################################################################
+
+CREATE TRIGGER [dbo].[CentroCopiado_Alumno_Insert] ON [dbo].[Alumno] AFTER INSERT AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Alumno (dni,nombre,apellidos,edad,email,id_carrera, estado)
+	SELECT dni,nombre,apellidos,edad,email,id_carrera, estado
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta) VALUES ('Alta Alumno ','Tabla de Alumnos',GETDATE(),@@IDENTITY)
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_AlumnoMateria_Insert] ON [dbo].[AlumnoMateria] AFTER INSERT AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.AlumnoMateria(id_Materia,id_Alumno)
+	SELECT id_Materia,id_Alumno
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta) VALUES ('Alta Alumno Materia','Tabla de AlumnosMaterias',GETDATE(),@@IDENTITY)
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_Carrera_Insert] ON [dbo].[Carrera] AFTER INSERT AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Carrera(nombre_carrera, estado)
+	SELECT nombre_carrera, estado
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta) VALUES ('Alta nueva Carrera','Tabla de Carreras',GETDATE(),@@IDENTITY)
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_CarreraMateria_Insert] ON [dbo].[CarreraMateria] AFTER INSERT AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.CarreraMateria(id_Materia,id_Carrera)
+	SELECT id_Materia,id_Carrera
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta) VALUES ('Alta MateriasCarrera','Tabla de CarrerasMaterias',GETDATE(),@@IDENTITY)
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_Materia_Insert] ON [dbo].[Materia] AFTER INSERT AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Materia(nombre_materia,id_profesor,id_apuntes)
+	SELECT nombre_materia,id_profesor,nroApunte
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta) VALUES ('Alta nuevas Materias','Tabla de Materias',GETDATE(),@@IDENTITY)
+END
+
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_Profesor_Insert] ON [dbo].[Profesor] AFTER INSERT AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Profesor(nombre,apellidos,email,estado,DNI)
+	SELECT nombre,apellidos,email,estado,DNI
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta) VALUES ('Alta nuevo Profesor','Tabla de profesores',GETDATE(),@@IDENTITY)
+END
+
+
+#########################################################################################################################################################################
+#																																										#
+#						TRIGGERS BASE DE DATOS UNIVERSIDAD - UPDATE																										#
+#						estos triggers son los encargados de escribir en las tablas correspondientes del CCA, cuando hacen un UPDATE									#
+#########################################################################################################################################################################
+
+CREATE TRIGGER [dbo].[CentroCopiado_Alumno_Update] ON [dbo].[Alumno] AFTER UPDATE AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Alumno (dni,nombre,apellidos,edad,email,id_carrera, estado)
+	SELECT dni,nombre,apellidos,edad,email,id_carrera, estado
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta,idActualizado) VALUES ('Actualizacion datos del Alumno ','Tabla de Alumnos',GETDATE(),(SELECT I.Id_Alumno FROM inserted I))
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_AlumnoMateria_Update] ON [dbo].[AlumnoMateria] AFTER UPDATE AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.AlumnoMateria(id_Materia,id_Alumno)
+	SELECT id_Materia,id_Alumno
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta,idActualizado) VALUES ('Actualizacion Alumno Materia','Tabla de AlumnosMaterias',GETDATE(),(SELECT I.id_AlumnoMateria FROM inserted I))
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_Carrera_Update] ON [dbo].[Carrera] AFTER UPDATE AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Carrera(nombre_carrera, estado)
+	SELECT nombre_carrera, estado
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta,idActualizado) VALUES ('Actualizacion datos de la Carrera','Tabla de Carreras',GETDATE(),(SELECT I.id_Carrera FROM inserted I))
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_CarreraMateria_Update] ON [dbo].[CarreraMateria] AFTER UPDATE AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.CarreraMateria(id_Materia,id_Carrera)
+	SELECT id_Materia,id_Carrera
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta,idActualizado) VALUES ('Actualizacion datos de MateriasCarrera','Tabla de CarrerasMaterias',GETDATE(),(SELECT I.id_CarreraMateria FROM inserted I))
+END
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_Materia_Update] ON [dbo].[Materia] AFTER UPDATE AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Materia(nombre_materia,id_profesor,id_apuntes)
+	SELECT nombre_materia,id_profesor,nroApunte
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta,idActualizado) VALUES ('Actualizacion datos de Materias','Tabla de Materias',GETDATE(),(SELECT I.id_materia FROM inserted I))
+END
+
+
+
+CREATE TRIGGER [dbo].[CentroCopiado_Profesor_Update] ON [dbo].[Profesor] AFTER UPDATE AS
+BEGIN
+	INSERT INTO CentroCopiado.dbo.Profesor(nombre,apellidos,email,estado,DNI)
+	SELECT nombre,apellidos,email,estado,DNI
+	FROM inserted
+	INSERT INTO CentroCopiado.dbo.AuditoriasInterface (descripcion,nombreTabla,fechaAlta,idActualizado) VALUES ('Actualizacion datos de Profesor','Tabla de profesores',GETDATE(),(SELECT I.id_Profesor FROM inserted I))
+END
