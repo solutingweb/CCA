@@ -14,5 +14,16 @@ namespace Negocio.Enumerables
             Recibido = 0,        
 
         }
+        public enum TipoPerfil
+        {
+            Administrador = 0,
+            Usuario = 1,
+        }
+        public enum Estado
+        {
+            Habilitado = 0,
+            Deshabilitado = 1,
+        }
     }
 }
+

@@ -2003,6 +2003,9 @@
     <Content Include="Views\Escaneo\AgregarApunte.cshtml" />
     <Content Include="Views\Venta\Index.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
+    <Content Include="Views\Usuario\Admin.cshtml" />
+    <Content Include="Views\Usuario\AgregarUsuario.cshtml" />
+    <Content Include="Views\Usuario\EditarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

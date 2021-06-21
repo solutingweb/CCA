@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using 
 
 namespace Presentacion.Controllers
 {
@@ -24,6 +25,7 @@ namespace Presentacion.Controllers
             {
                 Session["Usuario"] = N_Usuario.ObtenerPorUsuario(Request.Form["Usuario"].ToString(), Request.Form["Password"].ToString());
 
+                //Session["Estado"] = N_Usuario.BuscarEstado(Request.Form["Usuario"].ToString(), Request.Form["Password"].ToString());
                 resultado.EsCorrecto = true;
                 resultado.Mensaje = "";
 

@@ -52,7 +52,7 @@ namespace Datos
                     cn.Open();
 
                     // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
-                    SqlCommand cmd = new SqlCommand("Usuario_Listar", cn);
+                    SqlCommand cmd = new SqlCommand("Usuarios_Listar", cn);
 
                     // 2. Especifico el tipo de Comando
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -70,6 +70,95 @@ namespace Datos
 
                 throw new Exception("Error al obtener la lista de Usuarios: " + ex.Message);
             }
+
+        }
+
+        public static int AgregarUsuario(string Apellido, string Nombre, string Telefono, string Usuario, string Passwords, int id_Rol, byte Id_estado)
+        {
+
+            try
+            {
+                int id = 0;
+
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    DataTable dt = new DataTable();
+
+                    cn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("AgregarUsuario", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@apellido", Apellido));
+                    cmd.Parameters.Add(new SqlParameter("@nombre", Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@telefono", Telefono));
+                    cmd.Parameters.Add(new SqlParameter("@usuario", Usuario));
+                    cmd.Parameters.Add(new SqlParameter("@passwords", Passwords));
+                    cmd.Parameters.Add(new SqlParameter("@Id_logeo", id_Rol));
+                    cmd.Parameters.Add(new SqlParameter("@Estado", Id_estado));
+                    var dataReader = cmd.ExecuteReader();
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error AgregarApunte" + ex.Message);
+            }
+        }
+
+        public static int EditarUsuario(int IdUsuario, string Apellido, string Nombre, string Telefono, string Usuario, string Passwords, int id_Rol, byte Id_estado)
+        {
+
+            try
+            {
+                int id = 0;
+
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    DataTable dt = new DataTable();
+
+                    cn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("EditarUsuario", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@id_Usuario", IdUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@apellido", Apellido));
+                    cmd.Parameters.Add(new SqlParameter("@nombre", Nombre));
+                    cmd.Parameters.Add(new SqlParameter("@telefono", Telefono));
+                    cmd.Parameters.Add(new SqlParameter("@usuario", Usuario));
+                    cmd.Parameters.Add(new SqlParameter("@passwords", Passwords));
+                    cmd.Parameters.Add(new SqlParameter("@Id_logeo", id_Rol));
+                    cmd.Parameters.Add(new SqlParameter("@Estado", Id_estado));
+                    var dataReader = cmd.ExecuteReader();
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error AgregarApunte" + ex.Message);
+            }
+        }
+
+        public static DataTable BuscarEstado(int id)
+        {
+
+            var DataTable = new DataTable();
+
+            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+            {
+                cn.Open();
+                
+                SqlCommand cmd = new SqlCommand("BuscarEstado", cn);
+                
+                cmd.CommandType = CommandType.StoredProcedure;
+               
+                cmd.Parameters.Add(new SqlParameter("@id", id));                
+
+                var dataReader = cmd.ExecuteReader();
+
+                DataTable.Load(dataReader);
+            }
+
+            return DataTable;
 
         }
     }
