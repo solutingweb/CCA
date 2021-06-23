@@ -15,9 +15,7 @@ namespace Negocio
         public List<N_ProfesorApunte> ListaLibros { get; set; }
 
 
-        public N_Profesor()
-        { }
-
+        
         private static N_Profesor ArmarDatos(DataRow dr)
         {
             N_Profesor Profesor = new N_Profesor();

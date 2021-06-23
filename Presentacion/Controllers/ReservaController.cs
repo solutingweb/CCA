@@ -8,7 +8,7 @@ namespace Presentacion.Controllers
 {
     public class ReservaController : Controller
     {
-        // GET: Reserva
+        
         public ActionResult Index()
         {
             return View();

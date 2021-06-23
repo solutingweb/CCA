@@ -9,7 +9,7 @@ namespace Presentacion.Controllers
 {
     public class EscaneoController : Controller
     {
-        //AGREGADO LUCHO
+        
         public ActionResult Index()
         {
             List<N_ProfesorApunte> listaprofesorapunte = Negocio.N_ProfesorApunte.ListardeNoactualizados();

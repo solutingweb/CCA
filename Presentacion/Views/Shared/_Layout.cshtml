@@ -1,9 +1,4 @@
-﻿@*@model Negocio.N_Usuario
-
-@{
-    Negocio.N_Usuario usuario = Session["Usuario"] == null ? null : (Negocio.N_Usuario)Session["Usuario"];
-}*@
-
+﻿
 
 <!DOCTYPE html>
 <html>
@@ -95,7 +90,7 @@
                 </a>
             </li>
 
-            @*@if (Session["Usuario"] == 1)
+            @if ((int)Session["ROL"] == 0)
             {
                 <li class="nav-item">
                     <a class="nav-link" href="~/Usuario/Admin/">
@@ -103,7 +98,7 @@
                         <span>Administrar Usuarios</span>
                     </a>
                 </li>
-            }*@
+            }
 
             <li class="nav-item">
                 <a class="nav-link" href="~/Home/LogOut/">

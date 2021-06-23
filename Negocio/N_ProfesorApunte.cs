@@ -17,7 +17,7 @@ namespace Negocio
         public byte Estado { get; set; }
         public Negocio.Enumerables.Estados.TipoEstado TipoEstado { get; set; }
 
-        //AGREGADO LUCHO-
+        
         public static List<N_ProfesorApunte> ListardeNoactualizados()
         {
             List<N_ProfesorApunte> listaprofesorapunte = new List<N_ProfesorApunte>();
@@ -44,7 +44,7 @@ namespace Negocio
         {
             Datos.ProfesorApunte.Digitalizar(IdProfesorApunte);
         }
-        //-
+        
 
         private static N_ProfesorApunte ArmarDatos(DataRow dr)
         {

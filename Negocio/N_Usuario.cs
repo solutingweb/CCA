@@ -52,28 +52,19 @@ namespace Negocio
             else
             {
                 throw new Exception("No existen Usuarios con los datos ingresados");
-            }
-            
+            }            
             
         }
 
-        //public static N_Usuario BuscarEstado(int id)
-        //{
-        //    DataTable dt = Datos.Usuario.BuscarEstado(id);
-        //    N_Usuario Usuario = new N_Usuario();
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        return ArmarDatos(dt.Rows[0]);
-        //    }
-        //    else
-        //    {
-        //        throw new Exception("No ......................");
-        //    }
-        //}
-    }
+        public int InsertarUsuario()
+        {
+            return Datos.Usuario.AgregarUsuario(Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
+        }
 
-
-
+        public int ModificarUsuario()
+        {
+            return Datos.Usuario.EditarUsuario(IdUsuario, Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
+        }
         public static List<N_Usuario> Listar()
         {
             List<N_Usuario> listausuarios = new List<N_Usuario>();
@@ -86,15 +77,5 @@ namespace Negocio
             }
             return listausuarios;
         }
-        public int InsertarUsuario()
-        {
-            return Datos.Usuario.AgregarUsuario(Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
-        }
-        public int ModificarUsuario()
-        {
-            return Datos.Usuario.EditarUsuario(IdUsuario, Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
-        }
-
-
-    }
+    } 
 }

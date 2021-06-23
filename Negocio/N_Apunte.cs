@@ -8,7 +8,7 @@ using Datos;
 
 namespace Negocio
 {
-    //AGREGADO LUCHO
+    
     public class N_Apunte
     {
         public int? id_Apuntes { get; set; }

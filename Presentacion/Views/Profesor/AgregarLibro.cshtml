@@ -22,39 +22,27 @@
             <label for="NombreApunte" class="control-label col-md-3">Escriba el nombre del Libro :</label>
             <div class="col-md-3">
                 <input type="text" id="NombreApunte" name="NombreApunte" class="form-control" />
-                <div id="ErrorNombre" class="alert-danger col-md-2" style="width:260px"></div>
+                
             </div>
-        </div>
+        </div>             
 
-        <div class="text-danger"><ul id="Errores"></ul></div>
         <div class="form-horizontal">
             <div class="form form-group">
-                <div class="form-group">
-                    <label for="Estado" class="control-label col-md-3">Estado actual</label>
-                    <div class="col-md-7">
-                        <select name="Estado" style="width:50%" onchange="lista(this.value)" , class="form-control right">
-                            <option value="0" selected>Recibido</option>
-                            <option value="1">Entregado</option>
-                        </select>
-                        <div id="ErrorEspecialidad" class="alert-danger col-md-2" style="width:260px"></div>
-                    </div>
-                </div>
 
                 <div class="form-group">
-                    <label for="Digitalizado" id="Digitalizado" class="control-label col-md-3">Digitalizado</label>
+                    <label for="Digitalizado" class="control-label col-md-3">Especialidades</label>
                     <div class="col-md-7">
-                        <select name="Digitalizado" style="width:50%" onchange="lista(this.value)" , class="form-control right">
-                            <option value="NO" selected>NO</option>
-                            <option value="SI">SI</option>
+                        <select name="Digitalizado"  ,class="control-label col-md-3" >
+                            <option value="No" selected="">No</option >
                         </select>
-                        <div id="ErrorMedico" class="alert-danger col-md-2" style="width:260px"></div>
                     </div>
-                </div>
-            </div>
+                </div>              
 
-            <div class=" form-group">
-                <div class="col-md-offset-3 left col-md-10">
-                    <input type="submit" id="Correcto" value="Crear" class="btn btn-info">
+
+                <div class=" form-group">
+                    <div class="col-md-offset-3 left col-md-10">
+                        <input type="submit" id="Correcto" value="Crear" class="btn btn-info">
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,9 +60,7 @@
 
         $('#tblUsuarios').DataTable(
             {
-                //paging: false,
-                //ordering: false,
-
+              
             }
         );
     });
