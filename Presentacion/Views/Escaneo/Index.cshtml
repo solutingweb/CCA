@@ -1,37 +1,56 @@
 ﻿@model List<Negocio.N_ProfesorApunte>
-<!DOCTYPE html>
-<html lang="es">
-<body>
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-            <th>Apunte</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Digitalizado</th>
-            <th></th>
-            </thead>
-            <tbody>
-                @foreach (Negocio.N_ProfesorApunte item in Negocio.N_ProfesorApunte.ListardeNoactualizados())
-                 {
-                    <tr>
-                        <td>
-                            @item.NombreApunte
-                        </td>
-                        <td>
-                            @item.Nombre
-                        </td>
-                        <td>
-                            @item.Apellidos
-                        </td>
-                        <td>
-                            @item.Digitalizado
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" href="/Escaneo/AgregarApunte/@item.IdProfesorApunte">Digitalizar</a>
-                        </td>
-                    </tr>
-                 }
-        </table>
-    </div>
-</body>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
+<div class="container">
+    <br />
+    <h1 style="text-align:center">Libros a digitalizar</h1>
+
+    <table id="tblEscaneo" class="display">
+        <thead>
+            <tr>
+                <th>Apunte</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Digitalizado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Negocio.N_ProfesorApunte item in Negocio.N_ProfesorApunte.ListardeNoactualizados())
+            {
+                <tr>
+                    <td>
+                        @item.NombreApunte
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Apellidos
+                    </td>
+                    <td>
+                        @item.Digitalizado
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/Escaneo/AgregarApunte/@item.IdProfesorApunte">Digitalizar</a>
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('#tblEscaneo').DataTable(
+            {
+
+            }
+        );
+    });
+</script>

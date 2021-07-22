@@ -20,17 +20,12 @@ namespace Datos
             {
                 cn.Open();
 
-                // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
                 SqlCommand cmd = new SqlCommand("ListaLibrosPorProfesor", cn);
-
-                // 2. Especifico el tipo de Comando
+                
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                //// 3. Agrego el Valor al Procedimiento almacenado
+              
                 cmd.Parameters.Add(new SqlParameter("@Id", id));
 
-
-                // Ejecuto el comando y asigo el valor al DataReader
                 var dataReader = cmd.ExecuteReader();
 
                 DataTable.Load(dataReader);
@@ -52,20 +47,17 @@ namespace Datos
 
                     cn.Open();
 
-                    // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
+                    
                     SqlCommand cmd = new SqlCommand("Libro_Insertar", cn);
 
-                    // 2. Especifico el tipo de Comando
+                    
                     cmd.CommandType = CommandType.StoredProcedure;
 
-
-                    // 3. Agrego el Valor al Procedimiento almacenado
                     cmd.Parameters.Add(new SqlParameter("@id_Profesor", id_Profesor));
                     cmd.Parameters.Add(new SqlParameter("@nombreApunte", nombreApunte));
                     cmd.Parameters.Add(new SqlParameter("@estado", estado));
                     cmd.Parameters.Add(new SqlParameter("@digitalizado", digitalizado));
 
-                    // Ejecuto el comando y asigo el valor al DataReader
                     var dataReader = cmd.ExecuteReader();
                     dt.Load(dataReader);
                     id = Convert.ToInt32(dt.Rows[0][0]);
@@ -90,10 +82,9 @@ namespace Datos
                     {
                         cn.Open();
 
-                        // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
+                        
                         SqlCommand cmd = new SqlCommand("Libro_Editar", cn);
-
-                        // 2. Especifico el tipo de Comando
+                        
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         // 3. Agrego el Valor al Procedimiento almacenado
@@ -102,8 +93,7 @@ namespace Datos
                         cmd.Parameters.Add(new SqlParameter("@NombreApunte", nombreApunte));
                         cmd.Parameters.Add(new SqlParameter("@Estado", estado));
                         cmd.Parameters.Add(new SqlParameter("@Digitalizado", digitalizado));
-
-                        // Ejecuto el comando y asigo el valor al DataReader
+                        
                         var dataReader = cmd.ExecuteReader();
 
                     }
@@ -125,16 +115,13 @@ namespace Datos
             {
                 cn.Open();
 
-                // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
+                
                 SqlCommand cmd = new SqlCommand("Profesor_Obtener", cn);
 
-                // 2. Especifico el tipo de Comando
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                //// 3. Agrego el Valor al Procedimiento almacenado
                 cmd.Parameters.Add(new SqlParameter("@id", id));
 
-                // Ejecuto el comando y asigo el valor al DataReader
                 var dataReader = cmd.ExecuteReader();
 
                 DataTable.Load(dataReader);
@@ -144,7 +131,7 @@ namespace Datos
 
         }
 
-        //AGREGADO LUCHO-
+        
         public static DataTable ListarNoDigitalizados()
         {
             try
@@ -187,7 +174,7 @@ namespace Datos
             }
 
         }
-        //-
+        
     }
 }
 

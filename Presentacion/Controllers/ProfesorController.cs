@@ -9,7 +9,7 @@ namespace Presentacion.Controllers
 {
     public class ProfesorController : Controller
     {
-        // GET: Profesores
+        
         public ActionResult Index()
         {
             List<N_Profesor> listaprofesor = N_Profesor.Listar();

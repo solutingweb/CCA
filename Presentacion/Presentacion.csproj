@@ -2004,7 +2004,6 @@
     <Content Include="Views\Escaneo\AgregarApunte.cshtml" />
     <Content Include="Views\Venta\Index.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
-    <Content Include="Views\Apunte\AgregarCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

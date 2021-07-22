@@ -8,7 +8,7 @@ namespace Presentacion.Controllers
 {
     public class VentaController : Controller
     {
-        // GET: Venta
+        
         public ActionResult Index()
         {
             return View();

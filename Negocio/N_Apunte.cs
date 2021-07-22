@@ -10,7 +10,7 @@ using Negocio.Enumerables;
 
 namespace Negocio
 {
-
+    //AGREGADO LUCHO
     public class N_Apunte
     {
         public int? id_Apuntes { get; set; }
@@ -88,7 +88,5 @@ namespace Negocio
         {
             return Datos.Apunte.InsertarApunte(tituloApunte, Stock, cantidadHojas, estado);
         }
-
-
     }
 }

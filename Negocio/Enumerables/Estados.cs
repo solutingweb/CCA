@@ -14,12 +14,5 @@ namespace Negocio.Enumerables
             Recibido = 0,        
 
         }
-
-        /*Agregado Ariel Coronel - 18.06.2021*/
-        public enum ListarApuntes
-        {
-            Activo = 0,
-            Inactivo = 1,
-        }
     }
 }

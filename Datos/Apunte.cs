@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-
+    //AGREGADO LUCHO
     public class Apunte
     {
         public static int InsertarApunte(string tituloApunte, float Stock, int cantidadHojas, byte estado)
@@ -66,34 +66,5 @@ namespace Datos
                 throw new Exception("Error al obtener la lista de Apuntes Digitalizados: " + ex.Message);
             }
         }
-
-        public static DataTable ListarApuntesPorID(int idApuntes)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-
-                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
-                {
-                    cn.Open();
-                    SqlCommand cmd = new SqlCommand("Apuntes_Listar_Por_ID", cn);
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@idApuntes", idApuntes));
-
-                    var dataReader = cmd.ExecuteReader();
-
-                    dt.Load(dataReader);
-                }
-
-                return dt;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("Error al obtener la lista de Apuntes por IdApuntes: " + ex.Message);
-            }
-
-        }
-    }    
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using static Negocio.Enumerables.Estados;
 
 namespace Negocio
 {
@@ -11,13 +12,13 @@ namespace Negocio
         public string Nombre { get; set; }
         public string Telefono { get; set; }
         public string Usuario { get; set; }
-       public string Passwords { get; set; }
-       
-     
+        public string Passwords { get; set; }
+        public int id_Rol { get; set; }
+        public byte Id_estado { get; set; }
+        public TipoPerfil TipoPerfil { get; set; }
+        public Estado Estado { get; set; }
 
 
-        public N_Usuario()
-        { }
 
         private static N_Usuario ArmarDatos(DataRow dr)
         {
@@ -28,7 +29,12 @@ namespace Negocio
             Usuario.Nombre = dr["Nombre"].ToString();
             Usuario.Telefono = dr["Telefono"].ToString();
             Usuario.Usuario = dr["Usuario"].ToString();           
-            Usuario.Passwords = dr["Passwords"].ToString();          
+            Usuario.Passwords = dr["Passwords"].ToString();
+
+            Usuario.id_Rol = Convert.ToInt32(dr["Id_logeo"]);
+            Usuario.TipoPerfil = (TipoPerfil)Usuario.id_Rol;
+            Usuario.Id_estado = Convert.ToByte(dr["Estado"]);
+            Usuario.Estado = (Estado)Usuario.Id_estado;
 
             return Usuario;
         }
@@ -46,12 +52,30 @@ namespace Negocio
             else
             {
                 throw new Exception("No existen Usuarios con los datos ingresados");
-            }
-            
+            }            
             
         }
 
-       
-               
-    }
+        public int InsertarUsuario()
+        {
+            return Datos.Usuario.AgregarUsuario(Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
+        }
+
+        public int ModificarUsuario()
+        {
+            return Datos.Usuario.EditarUsuario(IdUsuario, Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
+        }
+        public static List<N_Usuario> Listar()
+        {
+            List<N_Usuario> listausuarios = new List<N_Usuario>();
+
+            DataTable dt = Datos.Usuario.Listar();
+
+            foreach (DataRow item in dt.Rows)
+            {
+                listausuarios.Add(ArmarDatos(item));
+            }
+            return listausuarios;
+        }
+    } 
 }
