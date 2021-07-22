@@ -1969,6 +1969,7 @@
     <Content Include="CCA\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="CCA\vendor\jquery\jquery.min.map" />
     <Content Include="CCA\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Scripts\AgregarCarrito.js" />
     <Content Include="Scripts\Combo.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Web.config" />
@@ -2003,6 +2004,7 @@
     <Content Include="Views\Escaneo\AgregarApunte.cshtml" />
     <Content Include="Views\Venta\Index.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
+    <Content Include="Views\Apunte\AgregarCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

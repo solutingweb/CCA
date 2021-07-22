@@ -1,0 +1,81 @@
+﻿@model Negocio.N_CarroApuntes
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro Copiado - Carrito de Apuntes</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+
+    <div class="card-header"><h1 class="text-lg-center">Apuntes a Comprar</h1></div>
+
+    <br />
+    <br />
+
+
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>ID Articulo</th>
+                <th>Titulo</th>
+                <th>Precio</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Session["Apuntes"] != null)
+            {
+                var listadoApuntes = Session["Apuntes"] as List<Negocio.N_CarroApuntes>;
+                foreach (var item in listadoApuntes)
+                {
+                    <tr>
+                        <td>@item.idApuntes</td>
+                        <td>@item.tituloApuntes</td>
+                        <td>@String.Format("{0:C}", @item.precioApuntes)</td>
+                        <td>@Html.ActionLink("Quitar del Carrito", "QuitarCarrito", "Apunte", new { id = @item.idApuntes }, new { @class = "rounded - circle border - 0" })</td>
+                    </tr>
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>NO HAY REGISTROS</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div><a class="btn btn-primary btn-user btn-danger" onclick="CarritoGrabar()">FINALIZAR COMPRA</a></div>
+        </div>
+    </div>
+    <br>
+
+    <div>@Html.ActionLink("Volver a Listado Apuntes", "Index", "Apunte", null, null)</div>
+
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable(
+                {
+                    paging: false,
+                }
+            );
+        });
+    </script>
+    <script src="~/Scripts/AgregarCarrito.js"></script>
+</body>
+</html>
+

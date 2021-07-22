@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    //AGREGADO LUCHO
+
     public class Apunte
     {
-        public static int InsertarApunte(string tituloApunte, byte id_estado, float Stock, int cantidadHojas, byte estado)
+        public static int InsertarApunte(string tituloApunte, float Stock, int cantidadHojas, byte estado)
         {
 
             try
@@ -26,7 +26,6 @@ namespace Datos
                     SqlCommand cmd = new SqlCommand("AgregarApunte", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@tituloApunte", tituloApunte));
-                    cmd.Parameters.Add(new SqlParameter("@id_estado", id_estado));
                     cmd.Parameters.Add(new SqlParameter("@Stock", Stock));
                     cmd.Parameters.Add(new SqlParameter("@cantidadHojas", cantidadHojas));
                     cmd.Parameters.Add(new SqlParameter("@estado", estado));
@@ -39,5 +38,62 @@ namespace Datos
                 throw new Exception("error AgregarApunte" + ex.Message);
             }
         }
-    }
+
+        public static DataTable ListarApuntes()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    cn.Open();
+
+                    SqlCommand cmd = new SqlCommand("Apuntes_Listar", cn);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    var dataReader = cmd.ExecuteReader();
+
+                    dt.Load(dataReader);
+                }
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al obtener la lista de Apuntes Digitalizados: " + ex.Message);
+            }
+        }
+
+        public static DataTable ListarApuntesPorID(int idApuntes)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("Apuntes_Listar_Por_ID", cn);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@idApuntes", idApuntes));
+
+                    var dataReader = cmd.ExecuteReader();
+
+                    dt.Load(dataReader);
+                }
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al obtener la lista de Apuntes por IdApuntes: " + ex.Message);
+            }
+
+        }
+    }    
 }

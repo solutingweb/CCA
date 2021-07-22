@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apunte.cs" />
+    <Compile Include="CarroApuntes.cs" />
     <Compile Include="ProfesorApunte.cs" />
     <Compile Include="Profesor.cs" />
     <Compile Include="Usuario.cs" />

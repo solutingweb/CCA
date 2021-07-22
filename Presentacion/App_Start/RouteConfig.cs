@@ -18,6 +18,12 @@ namespace Presentacion
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "AgregarCarrito",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Apunte", action = "AgregarCarrito", id = UrlParameter.Optional }
+            );
         }
     }
 }
