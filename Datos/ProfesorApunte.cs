@@ -130,7 +130,6 @@ namespace Datos
             return DataTable;
 
         }
-
         
         public static DataTable ListarNoDigitalizados()
         {

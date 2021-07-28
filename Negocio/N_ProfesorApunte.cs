@@ -17,17 +17,9 @@ namespace Negocio
         public byte Estado { get; set; }
         public Negocio.Enumerables.Estados.TipoEstado TipoEstado { get; set; }
 
-        
-        public static List<N_ProfesorApunte> ListardeNoactualizados()
-        {
-            List<N_ProfesorApunte> listaprofesorapunte = new List<N_ProfesorApunte>();
-            DataTable dt = Datos.ProfesorApunte.ListarNoDigitalizados();
-            foreach (DataRow item in dt.Rows)
-            {
-                listaprofesorapunte.Add(armaslistadenoactualizados(item));
-            }
-            return listaprofesorapunte;
-        }
+
+
+        #region private
         private static N_ProfesorApunte armaslistadenoactualizados(DataRow dr)
         {
             N_ProfesorApunte profesorApunte = new N_ProfesorApunte();
@@ -40,11 +32,6 @@ namespace Negocio
             profesorApunte.Digitalizado = dr["digitalizado"].ToString();
             return profesorApunte;
         }
-        public void Digitalizar(int IdProfesorApunte)
-        {
-            Datos.ProfesorApunte.Digitalizar(IdProfesorApunte);
-        }
-        
 
         private static N_ProfesorApunte ArmarDatos(DataRow dr)
         {
@@ -55,11 +42,53 @@ namespace Negocio
             ProfesorApunte.NombreApunte = dr["nombreApunte"].ToString();
             ProfesorApunte.Estado = Convert.ToByte(dr["Estado"]);
             ProfesorApunte.TipoEstado = (TipoEstado)Convert.ToInt32(dr["Estado"]);
-            ProfesorApunte.Digitalizado = dr["digitalizado"].ToString();           
+            ProfesorApunte.Digitalizado = dr["digitalizado"].ToString();
 
             return ProfesorApunte;
         }
-              
+
+        private void Editar()
+        {
+            Datos.ProfesorApunte.Editar(IdProfesorApunte.Value, IdProfesor, NombreApunte, Estado, Digitalizado);
+        }
+
+        private bool Validar(out string error)
+        {
+            error = "";
+            var Valido = true;
+
+            if (NombreApunte == "")
+            {
+                error = "El campo NombreApunte esta vacío";
+                Valido = false;
+            }
+            if (Digitalizado == "")
+            {
+                error += "El campo Digitalizado esta vacío";
+                Valido = false;
+            }
+
+            return Valido;
+        } 
+        #endregion
+
+        #region public
+        public static List<N_ProfesorApunte> ListardeNoactualizados()
+        {
+            List<N_ProfesorApunte> listaprofesorapunte = new List<N_ProfesorApunte>();
+            DataTable dt = Datos.ProfesorApunte.ListarNoDigitalizados();
+            foreach (DataRow item in dt.Rows)
+            {
+                listaprofesorapunte.Add(armaslistadenoactualizados(item));
+            }
+            return listaprofesorapunte;
+        }
+
+        public void Digitalizar(int IdProfesorApunte)
+        {
+            Datos.ProfesorApunte.Digitalizar(IdProfesorApunte);
+        }
+
         public static List<N_ProfesorApunte> ProfesorApunte(int idProfesor)
         {
             List<N_ProfesorApunte> profesorapunte = new List<N_ProfesorApunte>();
@@ -73,7 +102,11 @@ namespace Negocio
             return profesorapunte;
         }
 
-        
+        public void Insertar()
+        {
+            Datos.ProfesorApunte.Insertar(IdProfesor, NombreApunte, Estado, Digitalizado);
+        }
+
         public void Grabar()
         {
             if (Validar(out string error))
@@ -85,35 +118,8 @@ namespace Negocio
             }
             else
                 throw new Exception(error);
-        }
+        } 
+        #endregion
 
-        private void Editar()
-        {
-            Datos.ProfesorApunte.Editar(IdProfesorApunte.Value, IdProfesor, NombreApunte, Estado , Digitalizado);
-        }
-
-        public void Insertar()
-        {
-            Datos.ProfesorApunte.Insertar(IdProfesor, NombreApunte, Estado, Digitalizado);
-        }
-
-        private bool Validar(out string error)
-        {
-            error = "";
-            var Valido = true;
-
-            if (NombreApunte == "")
-            {
-                error = "El campo NombreApunte esta vacío";
-                Valido = false;
-            }            
-            if (Digitalizado == "")
-            {
-                error += "El campo Digitalizado esta vacío";
-                Valido = false;
-            }
-
-            return Valido;
-        }
     }
 }

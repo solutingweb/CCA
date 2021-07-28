@@ -8,7 +8,7 @@
 <body>
 
     <div class="col-md-12">
-        <table class="table">
+        <table id="Admin" class="table">
             <thead>
             <th>Apellido</th>
             <th>Nombre</th>
@@ -58,5 +58,20 @@
             <a class="btn btn-primary" href="/Usuario/Index">Volver al Menú</a>
         </div>
     </div>
+
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#Admin').DataTable(
+                    {
+                        paging: 10,
+                        pageLength: 10,
+                        lengthMenu: [5, 10, 15, 20, 25, 50]
+                    }
+                );
+            });
+        </script>
+    }
 </body>
+
 </html>

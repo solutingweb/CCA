@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\ApunteController.cs" />
     <Compile Include="Controllers\EscaneoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1969,7 +1970,7 @@
     <Content Include="CCA\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="CCA\vendor\jquery\jquery.min.map" />
     <Content Include="CCA\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Scripts\Combo.js" />
+    <Content Include="Scripts\AgregarCarritos.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1983,7 +1984,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Apunte\Index.cshtml" />
+    <Content Include="Views\Apunte\Listar.cshtml" />
     <Content Include="Views\Escaneo\Index.cshtml" />
     <Content Include="Views\Profesor\Index.cshtml" />
   </ItemGroup>
@@ -2006,6 +2007,9 @@
     <Content Include="Views\Usuario\Admin.cshtml" />
     <Content Include="Views\Usuario\AgregarUsuario.cshtml" />
     <Content Include="Views\Usuario\EditarUsuario.cshtml" />
+    <Content Include="Views\Apunte\AgregarCarrito.cshtml" />
+    <Content Include="Views\Alumno\Listar.cshtml" />
+    <Content Include="Views\Reserva\Agregar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

@@ -1,0 +1,46 @@
+﻿@model List<Negocio.N_Alumno>
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
+<div class="container">
+    <br />
+    <h1 style="text-align:center">Lista de Alumnos</h1>
+
+    <table id="tblAlumno" class="display">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>           
+                <th>Dni</th>                
+                <th>Reserva Apunte</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Negocio.N_Alumno item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Apellido</td>                    
+                    <td>@item.Dni</td>                  
+                    <td><a class="button" href="/Apunte/Listar/@item.IdAlumno">Reserva Apunte</a> </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#tblAlumno').DataTable(
+            {
+
+            }
+        );
+    });
+</script>

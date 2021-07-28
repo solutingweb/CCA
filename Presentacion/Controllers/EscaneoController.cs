@@ -23,8 +23,7 @@ namespace Presentacion.Controllers
         }
         public ActionResult InsertarApunte(N_Apunte apunte)
         {
-            apunte.estado = 1;
-            apunte.id_estado = 1;
+            apunte.estado = 1;          
             apunte.InsertarApunte();
             return RedirectToAction("Digitalizar");
         }

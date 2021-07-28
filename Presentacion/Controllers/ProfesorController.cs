@@ -19,7 +19,7 @@ namespace Presentacion.Controllers
         public ActionResult AgregarLibro(int id)
         {
             Session["id"] = id;
-            N_ProfesorApunte libro = new N_ProfesorApunte();
+            N_ProfesorApunte libro = new N_ProfesorApunte();           
             libro.IdProfesor = (int)Session["id"];
             return View(libro);
         }       
@@ -32,7 +32,7 @@ namespace Presentacion.Controllers
             libro.IdProfesor = Convert.ToInt32(Request.Form["IdProfesor"]);
             libro.NombreApunte = (Request.Form["NombreApunte"]);
             libro.TipoEstado = (Negocio.Enumerables.Estados.TipoEstado)Convert.ToInt32(Request.Form["Estado"]);           
-            libro.Digitalizado= (Request.Form["Digitalizado"]);
+            libro.Digitalizado = "NO";
             libro.Grabar();           
             
             return RedirectToAction("Index", "Profesor");

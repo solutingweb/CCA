@@ -1,4 +1,7 @@
-﻿function ValidarUsuario() {
+﻿function ValidarUsuario()
+{
+    debugger
+
     $.ajax({
         url: '/Home/Inicio',
         type: 'POST',
@@ -13,7 +16,6 @@
                 $('#msgErrorLoginDes').append(resultado.Mensaje);
             }
             else {
-
                 window.location = "/Usuario/Index";
             }
 

@@ -15,7 +15,8 @@ namespace Negocio
         public List<N_ProfesorApunte> ListaLibros { get; set; }
 
 
-        
+
+        #region Private
         private static N_Profesor ArmarDatos(DataRow dr)
         {
             N_Profesor Profesor = new N_Profesor();
@@ -24,14 +25,16 @@ namespace Negocio
             Profesor.Nombre = dr["Nombre"].ToString();
             Profesor.Apellido = dr["Apellidos"].ToString();
             Profesor.Email = dr["email"].ToString();
-            Profesor.Estado = Convert.ToBoolean( dr["Estado"].ToString());           
-            Profesor.Dni = dr["DNI"].ToString();            
+            Profesor.Estado = Convert.ToBoolean(dr["Estado"].ToString());
+            Profesor.Dni = dr["DNI"].ToString();
 
             return Profesor;
-        }
-                
-      
+        } 
+        #endregion
 
+
+
+        #region public
         public static List<N_Profesor> Listar()
         {
             List<N_Profesor> listaprofesores = new List<N_Profesor>();
@@ -43,7 +46,8 @@ namespace Negocio
                 listaprofesores.Add(ArmarDatos(item));
             }
             return listaprofesores;
-        }
-        
+        } 
+        #endregion
+
     }
 }

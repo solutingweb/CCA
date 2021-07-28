@@ -97,7 +97,7 @@ namespace Datos
                 throw new Exception("error AgregarApunte" + ex.Message);
             }
         }
-
+        
         public static int EditarUsuario(int IdUsuario, string Apellido, string Nombre, string Telefono, string Usuario, string Passwords, int id_Rol, byte Id_estado)
         {
 
@@ -131,6 +131,6 @@ namespace Datos
             }
         }
 
-       
+
     }
 }

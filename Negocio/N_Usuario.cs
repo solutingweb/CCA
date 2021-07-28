@@ -20,6 +20,7 @@ namespace Negocio
 
 
 
+        #region private
         private static N_Usuario ArmarDatos(DataRow dr)
         {
             N_Usuario Usuario = new N_Usuario();
@@ -28,9 +29,8 @@ namespace Negocio
             Usuario.Apellido = dr["Apellido"].ToString();
             Usuario.Nombre = dr["Nombre"].ToString();
             Usuario.Telefono = dr["Telefono"].ToString();
-            Usuario.Usuario = dr["Usuario"].ToString();           
+            Usuario.Usuario = dr["Usuario"].ToString();
             Usuario.Passwords = dr["Passwords"].ToString();
-
             Usuario.id_Rol = Convert.ToInt32(dr["Id_logeo"]);
             Usuario.TipoPerfil = (TipoPerfil)Usuario.id_Rol;
             Usuario.Id_estado = Convert.ToByte(dr["Estado"]);
@@ -39,10 +39,12 @@ namespace Negocio
             return Usuario;
         }
 
+        #endregion
 
+        #region public
         public static N_Usuario ObtenerPorUsuario(string usuario, string password)
         {
-            
+
             DataTable dt = Datos.Usuario.ObtenerPorUsuario(usuario, password);
             N_Usuario Usuario = new N_Usuario();
             if (dt.Rows.Count > 0)
@@ -52,8 +54,8 @@ namespace Negocio
             else
             {
                 throw new Exception("No existen Usuarios con los datos ingresados");
-            }            
-            
+            }
+
         }
 
         public int InsertarUsuario()
@@ -76,6 +78,7 @@ namespace Negocio
                 listausuarios.Add(ArmarDatos(item));
             }
             return listausuarios;
-        }
+        } 
+        #endregion
     } 
 }

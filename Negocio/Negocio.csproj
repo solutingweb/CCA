@@ -32,7 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +45,13 @@
   <ItemGroup>
     <Compile Include="Enumerables\Estados.cs" />
     <Compile Include="N_Apunte.cs" />
+    <Compile Include="N_CarroApuntes.cs" />
+    <Compile Include="N_Alumno.cs" />
     <Compile Include="N_ProfesorApunte.cs" />
     <Compile Include="N_Profesor.cs" />
     <Compile Include="N_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="N_Reserva.cs" />
     <Compile Include="Resultado.cs" />
   </ItemGroup>
   <ItemGroup>

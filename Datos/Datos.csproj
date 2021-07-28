@@ -43,8 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apunte.cs" />
+    <Compile Include="CarroApuntes.cs" />
+    <Compile Include="Alumno.cs" />
     <Compile Include="ProfesorApunte.cs" />
     <Compile Include="Profesor.cs" />
+    <Compile Include="Reserva.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
