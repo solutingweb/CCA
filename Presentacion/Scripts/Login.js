@@ -16,7 +16,7 @@
                 $('#msgErrorLoginDes').append(resultado.Mensaje);
             }
             else {
-                window.location = "/Usuario/Index";
+                window.location = "/Usuario/Listar";
             }
 
         }

@@ -1,26 +1,55 @@
 ﻿@model Negocio.N_Apunte
 <!DOCTYPE html>
-<html lang="es">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro Copiado</title>
+</head>
+
 <body>
-    <form action="/Escaneo/InsertarApunte" method="post">
-        <div class="col-md-12">
-            <br />
-            <label Class="control-label col-md-2">Título del Apunte</label>
-            <div Class="col-md-10">
-                <input id="tituloApunte" type="text" required name="tituloApunte" />
-            </div>
-            <label Class="control-label col-md-2">Cantidad de Stock</label>
-            <div Class="col-md-10">
-                <input id="Stock" name="Stock" type="number" required maxlength="3" />
-            </div>
-            <label Class="control-label col-md-2">Cantidad de Hojas</label>
-            <div Class="col-md-10">
-                <input id="cantidadHojas" type="number" required name="cantidadHojas" maxlength="4" />
-            </div>
-            <br />
-            <div Class="col-md-10">
-                <input type="submit" class="btn btn-primary" value="Agregar" />
-            </div>
+    <br />
+    <h1 style="text-align:center">Digitalizar Libro</h1>
+    <div class="container">
+        <hr />
+        <br />
+        <div class="card shadow mb-4">
+            <form action="/Escaneo/InsertarApunte" method="post">
+
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Título del Apunte</h6>
+                    <div Class="col-md-3">
+                        <input class="form-control" id="tituloApunte" type="text" required name="tituloApunte" />
+                        @Html.ValidationMessageFor(m => m.tituloApunte, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Cantidad de Stock</h6>
+                    <div class="col-md-3">
+                        <input class="form-control" id="Stock" name="Stock" type="number" required maxlength="3" />
+                        @Html.ValidationMessageFor(m => m.Stock, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Cantidad de Hojas</h6>
+                    <div class="col-md-3">
+                        <input class="form-control" id="cantidadHojas" type="number" required name="cantidadHojas" maxlength="4" />
+                        @Html.ValidationMessageFor(m => m.cantidadHojas, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div Class="col-md-offset-3 left col-md-10">
+                        <input type="submit" class="btn btn-info" value="Agregar" />
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
+    <div>
+        @Html.ActionLink("Volver a la lista de libros a digitalizar", "Listar")
+    </div>
+
 </body>
+</html>

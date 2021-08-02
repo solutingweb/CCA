@@ -23,7 +23,7 @@ namespace Datos
                 {
                     DataTable dt = new DataTable();
                     cn.Open();
-                    SqlCommand cmd = new SqlCommand("AgregarApunte", cn);
+                    SqlCommand cmd = new SqlCommand("Apunte_Agregar", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@tituloApunte", tituloApunte));                 
                     cmd.Parameters.Add(new SqlParameter("@Stock", Stock));
@@ -62,7 +62,6 @@ namespace Datos
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Error al obtener la lista de apuntes: " + ex.Message);
             }
 

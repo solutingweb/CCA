@@ -9,7 +9,6 @@ namespace Negocio
     public class Resultado
     {
         public bool EsCorrecto { get; set; }
-        public string Mensaje { get; set; }
-        
+        public string Mensaje { get; set; }        
     }
 }

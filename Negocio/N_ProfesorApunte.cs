@@ -19,7 +19,7 @@ namespace Negocio
 
 
 
-        #region private
+        #region Metodo privado
         private static N_ProfesorApunte armaslistadenoactualizados(DataRow dr)
         {
             N_ProfesorApunte profesorApunte = new N_ProfesorApunte();
@@ -32,7 +32,6 @@ namespace Negocio
             profesorApunte.Digitalizado = dr["digitalizado"].ToString();
             return profesorApunte;
         }
-
         private static N_ProfesorApunte ArmarDatos(DataRow dr)
         {
             N_ProfesorApunte ProfesorApunte = new N_ProfesorApunte();
@@ -46,33 +45,13 @@ namespace Negocio
 
             return ProfesorApunte;
         }
-
         private void Editar()
         {
             Datos.ProfesorApunte.Editar(IdProfesorApunte.Value, IdProfesor, NombreApunte, Estado, Digitalizado);
         }
-
-        private bool Validar(out string error)
-        {
-            error = "";
-            var Valido = true;
-
-            if (NombreApunte == "")
-            {
-                error = "El campo NombreApunte esta vacío";
-                Valido = false;
-            }
-            if (Digitalizado == "")
-            {
-                error += "El campo Digitalizado esta vacío";
-                Valido = false;
-            }
-
-            return Valido;
-        } 
         #endregion
 
-        #region public
+        #region Metodo publico
         public static List<N_ProfesorApunte> ListardeNoactualizados()
         {
             List<N_ProfesorApunte> listaprofesorapunte = new List<N_ProfesorApunte>();
@@ -83,12 +62,10 @@ namespace Negocio
             }
             return listaprofesorapunte;
         }
-
         public void Digitalizar(int IdProfesorApunte)
         {
             Datos.ProfesorApunte.Digitalizar(IdProfesorApunte);
         }
-
         public static List<N_ProfesorApunte> ProfesorApunte(int idProfesor)
         {
             List<N_ProfesorApunte> profesorapunte = new List<N_ProfesorApunte>();
@@ -101,23 +78,16 @@ namespace Negocio
             }
             return profesorapunte;
         }
-
         public void Insertar()
         {
             Datos.ProfesorApunte.Insertar(IdProfesor, NombreApunte, Estado, Digitalizado);
         }
-
         public void Grabar()
         {
-            if (Validar(out string error))
-            {
-                if (IdProfesorApunte != null)
-                    Editar();
-                else
-                    Insertar();
-            }
+            if (IdProfesorApunte != null)
+                Editar();
             else
-                throw new Exception(error);
+                Insertar();
         } 
         #endregion
 

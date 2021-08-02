@@ -14,27 +14,30 @@ namespace Datos
 
         public static DataTable ObtenerPorUsuario(string usuario, string password)
         {
-
-            var DataTable = new DataTable();
-
-            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+            try
             {
-                cn.Open();
 
-                SqlCommand cmd = new SqlCommand("Usuarios_ObtenerPorUsuario", cn);
-                
-                cmd.CommandType = CommandType.StoredProcedure;
-               
-                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
-                cmd.Parameters.Add(new SqlParameter("@Passwords", password));
-                
-                var dataReader = cmd.ExecuteReader();
+                var DataTable = new DataTable();
 
-                DataTable.Load(dataReader);
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    cn.Open();
+
+                    SqlCommand cmd = new SqlCommand("Usuarios_ObtenerPorUsuario", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                    cmd.Parameters.Add(new SqlParameter("@Passwords", password));
+                    var dataReader = cmd.ExecuteReader();
+
+                    DataTable.Load(dataReader);
+                }
+                return DataTable;
+
             }
-
-            return DataTable;
-
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el usuario: " + ex.Message);
+            }
         }
 
         public static DataTable Listar()
@@ -79,7 +82,7 @@ namespace Datos
 
                     cn.Open
                     ();
-                    SqlCommand cmd = new SqlCommand("AgregarUsuario", cn);
+                    SqlCommand cmd = new SqlCommand("Usuario_Agregar", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@apellido", Apellido));
                     cmd.Parameters.Add(new SqlParameter("@nombre", Nombre));
@@ -111,7 +114,7 @@ namespace Datos
 
                     cn.Open
                     ();
-                    SqlCommand cmd = new SqlCommand("EditarUsuario", cn);
+                    SqlCommand cmd = new SqlCommand("Usuario_Editar", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@id_Usuario", IdUsuario));
                     cmd.Parameters.Add(new SqlParameter("@apellido", Apellido));
@@ -127,10 +130,38 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("error AgregarApunte" + ex.Message);
+                throw new Exception("error al Ediatar un usuario" + ex.Message);
             }
         }
 
+        public static DataTable BuscarUsuario(string usuario)
+        {
+            var DataTable = new DataTable();
+            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("Usuarios_BuscarUsuario", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                var dataReader = cmd.ExecuteReader();
+                DataTable.Load(dataReader);
+            }
+            return DataTable;
+        }
+        public static DataTable BuscarPassword(string password)
+        {
+            var DataTable = new DataTable();
+            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("Usuarios_BuscarPassword", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Passwords", password));
+                var dataReader = cmd.ExecuteReader();
+                DataTable.Load(dataReader);
+            }
+            return DataTable;
+        }
 
     }
 }

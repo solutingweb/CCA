@@ -11,30 +11,29 @@ namespace Presentacion.Controllers
     {
 
         float valorFinal;
-             
-      
-        //public ActionResult ListarApunte()
-        //{
-        //    List<N_Apunte> listaapuntes = N_Apunte.Listar();
-        //    return View(listaapuntes);
-        //}
-
-
+            
         public ActionResult Listar(int? id)
         {
-            if (id != null)
+            try
             {
-                Session["idAlumno"] = id;
-                N_Alumno alumno = N_Alumno.Listar().Where(x => x.IdAlumno == id).FirstOrDefault();
-                Session["NombreAlumno"] = alumno.Nombre;
+                if (id != null)
+                {
+                    Session["idAlumno"] = id;
+                    N_Alumno alumno = N_Alumno.Listar().Where(x => x.IdAlumno == id).FirstOrDefault();
+                    Session["NombreAlumno"] = alumno.Nombre;
+                }
+                else
+                {
+                    Session["idAlumno"] = null;
+                    Session["NombreAlumno"] = null;
+                }
+                List<N_Apunte> listaapuntes = N_Apunte.Listar();
+                return View(listaapuntes);
             }
-            else
+            catch (Exception ex)
             {
-                Session["idAlumno"] = null;
-                Session["NombreAlumno"] = null;
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
             }
-            List<N_Apunte> listaapuntes = N_Apunte.Listar();
-            return View(listaapuntes);
         }
 
         [HttpPost]
@@ -67,40 +66,54 @@ namespace Presentacion.Controllers
         [HttpGet]
         public ActionResult AgregarCarrito(int? id)
         {
-
-            if (id != null)
+            try
             {
-                int idApuntes = (int)id;
 
-                N_CarroApuntes cargarCarrito = N_CarroApuntes.CarritoAp(idApuntes);
-                List<N_CarroApuntes> listadoCarrito = new List<N_CarroApuntes>();
+                if (id != null)
+                {
+                    int idApuntes = (int)id;
 
-                if (Session["Apuntes"] != null)
-                    listadoCarrito = (List<N_CarroApuntes>)Session["Apuntes"];
-                listadoCarrito.Add(cargarCarrito);
-                Session["Apuntes"] = listadoCarrito;
-                if (Session["AcumuladoCarrito"] != null)
-                    valorFinal = (float)Session["AcumuladoCarrito"];
-                valorFinal += cargarCarrito.totalCostoApuntes;
-                Session["AcumuladoCarrito"] = valorFinal;
+                    N_CarroApuntes cargarCarrito = N_CarroApuntes.CarritoAp(idApuntes);
+                    List<N_CarroApuntes> listadoCarrito = new List<N_CarroApuntes>();
 
-                return View();
+                    if (Session["Apuntes"] != null)
+                        listadoCarrito = (List<N_CarroApuntes>)Session["Apuntes"];
+                    listadoCarrito.Add(cargarCarrito);
+                    Session["Apuntes"] = listadoCarrito;
+                    if (Session["AcumuladoCarrito"] != null)
+                        valorFinal = (float)Session["AcumuladoCarrito"];
+                    valorFinal += cargarCarrito.totalCostoApuntes;
+                    Session["AcumuladoCarrito"] = valorFinal;
+
+                    return View();
+                }
+                else
+                {
+                    ViewBag.mensaje = Session["AcumuladoCarrito"];
+                    return View();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ViewBag.mensaje = Session["AcumuladoCarrito"];
-                return View();
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
             }
         }
 
         public ActionResult QuitarCarrito(int? id)
         {
-            List<N_CarroApuntes> quitarCarrito = (List<N_CarroApuntes>)Session["Apuntes"];
-            var removerID = quitarCarrito.Find(c => c.idApuntes == id);
-            quitarCarrito.Remove(removerID);
-            Session["Apuntes"] = quitarCarrito;
-            Session["AcumuladoCarrito"] = (float)Session["AcumuladoCarrito"] - (float)removerID.precioApuntes;
-            return RedirectToAction("AgregarCarrito", "Apunte", null);
+            try
+            {
+                List<N_CarroApuntes> quitarCarrito = (List<N_CarroApuntes>)Session["Apuntes"];
+                var removerID = quitarCarrito.Find(c => c.idApuntes == id);
+                quitarCarrito.Remove(removerID);
+                Session["Apuntes"] = quitarCarrito;
+                Session["AcumuladoCarrito"] = (float)Session["AcumuladoCarrito"] - (float)removerID.precioApuntes;
+                return RedirectToAction("AgregarCarrito", "Apunte", null);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
+            }
         }
 
         [HttpPost]

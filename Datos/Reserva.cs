@@ -23,30 +23,20 @@ namespace Datos
                     DataTable dt = new DataTable();
 
                     cn.Open();
-
-                    // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
                     SqlCommand cmd = new SqlCommand("AgregarReserva", cn);
-
-                    // 2. Especifico el tipo de Comando
                     cmd.CommandType = CommandType.StoredProcedure;
-
-
-                    // 3. Agrego el Valor al Procedimiento almacenado
                     cmd.Parameters.Add(new SqlParameter("@ID_ALUMNO", id_Alumno));
                     cmd.Parameters.Add(new SqlParameter("@ID_APUNTES", id_Apuntes));
                     cmd.Parameters.Add(new SqlParameter("@RESERVA", reserva));
-                    // Ejecuto el comando y asigo el valor al DataReader
-                    var dataReader = cmd.ExecuteReader();
-                    //dt.Load(dataReader);
-                    //id = Convert.ToInt32(dt.Rows[0][0]);
+                    
+                    var dataReader = cmd.ExecuteReader();                    
                 }
 
                 return id;
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error al agregar reserva: " + ex.Message);
+                throw new Exception("Error al agregar una reserva: " + ex.Message);
             }
         }
 
@@ -59,16 +49,9 @@ namespace Datos
                 using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
                 {
                     cn.Open();
-
-                    // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
                     SqlCommand cmd = new SqlCommand("ListarReservas", cn);
-
-                    // 2. Especifico el tipo de Comando
                     cmd.CommandType = CommandType.StoredProcedure;
-
-                    // Ejecuto el comando y asigo el valor al DataReader
                     var dataReader = cmd.ExecuteReader();
-
                     dt.Load(dataReader);
                 }
 
@@ -76,41 +59,10 @@ namespace Datos
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error al obtener la lista de Usuarios: " + ex.Message);
+                throw new Exception("Error al obtener la lista de reservas: " + ex.Message);
             }
 
-        }
-
-        public static void Editar(int id_Reserva)
-        {
-            try
-            {
-                if (id_Reserva != 0)
-                {
-                    using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexión"].ConnectionString))
-                    {
-                        cn.Open();
-
-
-                        SqlCommand cmd = new SqlCommand("EliminarReservas", cn);
-
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        // 3. Agrego el Valor al Procedimiento almacenado
-                        cmd.Parameters.Add(new SqlParameter("@id_Reservas", id_Reserva));
-
-                        var dataReader = cmd.ExecuteReader();
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("Error al eliminar la reserva: " + ex.Message);
-            }
-        }
+        }        
 
         public static int Eliminar(int id_Reserva)
         {
@@ -120,18 +72,10 @@ namespace Datos
                 using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
                 {
                     cn.Open();
-
-                    // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
-                    SqlCommand cmd = new SqlCommand("EliminarReservas", cn);
-                    // 2. Especifico el tipo de Comando
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    // 3. Agrego el Valor al Procedimiento almacenado      
+                    SqlCommand cmd = new SqlCommand("EliminarReservas", cn);                    
+                    cmd.CommandType = CommandType.StoredProcedure;   
                     cmd.Parameters.Add(new SqlParameter("@ID_RESERVAS", id_Reserva));
-
-                    // Ejecuto el comando y asigo el valor al DataReader
                     var dataReader = cmd.ExecuteReader();
-
                 }
                 return id;
             }
@@ -140,7 +84,7 @@ namespace Datos
                 throw new Exception("Error al eliminar la reserva" + ex.Message);
             }
         }
-        public static int Entregar(int id_Reserva)
+        public static int Saldar(int id_Reserva)
         {
             try
             {
@@ -148,16 +92,9 @@ namespace Datos
                 using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
                 {
                     cn.Open();
-
-                    // 1. Creo el objeto SqlCommand y le asigno el nombre del Procedimiento Almacenado
-                    SqlCommand cmd = new SqlCommand("EntregarReservas", cn);
-                    // 2. Especifico el tipo de Comando
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    // 3. Agrego el Valor al Procedimiento almacenado      
+                    SqlCommand cmd = new SqlCommand("SaldarReservas", cn);                    
+                    cmd.CommandType = CommandType.StoredProcedure;   
                     cmd.Parameters.Add(new SqlParameter("@ID_RESERVAS", id_Reserva));
-
-                    // Ejecuto el comando y asigo el valor al DataReader
                     var dataReader = cmd.ExecuteReader();
 
                 }

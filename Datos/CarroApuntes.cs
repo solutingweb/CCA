@@ -11,7 +11,7 @@ namespace Datos
 {
     public class CarroApuntes
     {
-        /*Agregado Ariel Coronel - 18.06.2021*/
+       
         public static DataTable CarritoApuntesListar(int idApuntes)
         {
             try
@@ -52,8 +52,7 @@ namespace Datos
                     cn.Open();
 
                     SqlCommand cmd = new SqlCommand("Carrito_Apuntes_Guardar", cn);
-
-                    //Se especifica el tipo de comando
+                    
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add(new SqlParameter("@tituloApuntes", tituloApuntes));

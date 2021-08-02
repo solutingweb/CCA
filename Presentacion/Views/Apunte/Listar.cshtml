@@ -9,25 +9,26 @@
 </head>
 
 <body>
-    <div class="card-header"><h1 class="text-lg-center">Listado de Apuntes Habilitados</h1></div>
+    <br />
+    <h1 style="text-align:center">Lista de Apuntes</h1>
+    <hr />
 
-    @if(Session["NombreAlumno"] != null) 
-    { 
+    @if (Session["NombreAlumno"] != null)
+    {
         <div>Nombre Alumno: @Session["NombreAlumno"]</div>
 
     }
 
     @if (Session["AcumuladoCarrito"] != null)
-    {
+    {           
         <br />
-        <hr>
-        <div>Acumulado Carrito $: @Session["AcumuladoCarrito"]</div>
-        <hr>
-        <br />
-        <div>@Html.ActionLink("VER CARRITO", "AgregarCarrito", "Apunte", null, new { @class = "rounded - circle border - 0 btn-info" })</div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Acumulado Carrito $: @Session["AcumuladoCarrito"]</h1>
+            <a href="~/Apunte/AgregarCarrito" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-shopping-cart fa-sm text-white-50"></i> Ver Carrito
+            </a>
+        </div>
     }
-
-    <br /><br />
 
     <div class="container">
         <table id="table_id" class="table table-hover">
@@ -42,7 +43,6 @@
                     <th>Accion</th>
                     <th>Accion</th>
                 </tr>
-
             </thead>
 
             <tbody>
@@ -56,7 +56,7 @@
                         <td>@item.precio</td>
                         <td>@item.estadoApunte</td>
                         <td>
-                            @if (@item.Stock != 0 && Session ["NombreAlumno"] == null)
+                            @if (@item.Stock != 0 && Session["NombreAlumno"] == null)
                             {
                                 @Html.ActionLink("Unir al carrito", "AgregarCarrito", "Apunte", new { id = @item.id_Apuntes }, new { @class = "rounded - circle border - 0" })
                             }
@@ -64,9 +64,9 @@
                             { <p>SIN STOCK</p>}
                         </td>
                         <td>
-                            @if(Session ["NombreAlumno"] != null)
+                            @if (Session["NombreAlumno"] != null)
                             {
-                            @Html.ActionLink("Reservar", "Agregar", "Reserva", new { id = @item.id_Apuntes }, new { @class = "rounded - circle border - 0" })
+                                @Html.ActionLink("Reservar", "Agregar", "Reserva", new { id = @item.id_Apuntes }, new { @class = "rounded - circle border - 0" })
                             }
                         </td>
 

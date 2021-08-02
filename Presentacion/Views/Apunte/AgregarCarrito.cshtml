@@ -21,16 +21,17 @@
         <div class="btn-group">
             @if (Session["Apuntes"] != null)
             {
-                <div><a class="row-cols-2 btn btn-primary btn-user btn-danger" onclick="VaciarCarrito()">  VACIAR CARRITO  </a></div>
-                <div><a class="cols-xl-3 btn btn-primary btn-user btn-info" onclick="CarritoGrabar()">  FINALIZAR COMPRA  </a></div>
-            }
-
+                <div><a class="row-cols-2 btn btn-primary btn-user btn-danger" onclick="VaciarCarrito()">  VACIAR CARRITO  </a> &nbsp; </div>
+                <div><a class="cols-xl-3 btn btn-primary btn-user btn-info" onclick="CarritoGrabar()">  FINALIZAR COMPRA  </a></div>}
         </div>
     </div>
 
     <br />
     <hr>
-    <div>Acumulado Carrito $: @Session["AcumuladoCarrito"]</div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h3 class="h3 mb-0 text-gray-800">Acumulado Carrito $: @Session["AcumuladoCarrito"]</h3>
+        <div class="float-right">@Html.ActionLink("Volver a Listado Apuntes", "Listar", "Apunte", null, null)</div>
+    </div>
     <hr>
     <br />
     <br />
@@ -68,15 +69,7 @@
 
 
         </tbody>
-    </table>
-    <br />
-    <br />
-    <div class="btn-toolbar" role="toolbar">
-        <div class="btn-group">
-            <div>@Html.ActionLink("Volver a Listado Apuntes", "Listar", "Apunte", null, null)</div>
-        </div>
-    </div>
-
+    </table>        
     <script>
         $(document).ready(function () {
             $('#table_id').DataTable(

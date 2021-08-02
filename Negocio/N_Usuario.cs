@@ -20,7 +20,7 @@ namespace Negocio
 
 
 
-        #region private
+        #region Metodo privado
         private static N_Usuario ArmarDatos(DataRow dr)
         {
             N_Usuario Usuario = new N_Usuario();
@@ -38,10 +38,9 @@ namespace Negocio
 
             return Usuario;
         }
-
         #endregion
 
-        #region public
+        #region Metodo publico
         public static N_Usuario ObtenerPorUsuario(string usuario, string password)
         {
 
@@ -57,12 +56,10 @@ namespace Negocio
             }
 
         }
-
         public int InsertarUsuario()
         {
             return Datos.Usuario.AgregarUsuario(Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
         }
-
         public int ModificarUsuario()
         {
             return Datos.Usuario.EditarUsuario(IdUsuario, Apellido, Nombre, Telefono, Usuario, Passwords, id_Rol, Id_estado);
@@ -78,7 +75,40 @@ namespace Negocio
                 listausuarios.Add(ArmarDatos(item));
             }
             return listausuarios;
-        } 
+        }
+
+        public static N_Usuario BuscarUsuario(string usuario)
+        {
+
+            DataTable dt = Datos.Usuario.BuscarUsuario(usuario);
+            N_Usuario Usuario = new N_Usuario();
+            if (dt.Rows.Count > 0)
+            {
+                throw new Exception("El nombre de usuario ingresado ya existe");
+            }
+            else
+            {
+                return Usuario;
+            }
+
+
+        }
+        public static N_Usuario BuscarPassword(string password)
+        {
+
+            DataTable dt = Datos.Usuario.BuscarPassword(password);
+            N_Usuario Usuario = new N_Usuario();
+            if (dt.Rows.Count > 0)
+            {
+                throw new Exception("La contraseña ingresada ya existe");
+            }
+            else
+            {
+                return Usuario;
+            }
+
+        }
+
         #endregion
     } 
 }

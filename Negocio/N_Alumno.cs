@@ -16,7 +16,7 @@ namespace Negocio
         public int Id_Carrera  { get; set; }
 
 
-        #region metodo privado (por michel)
+        #region metodos privados
         private static N_Alumno ArmarDatos(DataRow dr)
         {
             N_Alumno Alumno = new N_Alumno();
@@ -31,10 +31,10 @@ namespace Negocio
             Alumno.Id_Carrera = Convert.ToInt32(dr["Id_Carrera"].ToString());
 
             return Alumno;
-        }  
+        }
         #endregion
 
-        #region public
+        #region metodos publicos
         public static List<N_Alumno> Listar()
         {
             List<N_Alumno> listaalumno = new List<N_Alumno>();

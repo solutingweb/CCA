@@ -43,7 +43,6 @@ namespace Presentacion.Controllers
 
         }
 
-
         public ActionResult LogOut()
         {
             Session.Abandon();

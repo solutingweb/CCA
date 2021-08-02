@@ -9,6 +9,7 @@
 <div class="container">
     <br/>
     <h1 style="text-align:center">Lista de Profesores</h1>
+    <hr/>
 
     <table id="tblUsuarios" class="display">
         <thead>
@@ -31,8 +32,8 @@
                     <td>@item.Email</td>
                     <td>@item.Dni</td>
                     <td>@item.Estado</td>
-                    <td><a class="button" href="/Profesor/LibroProfesor/@item.IdProfesor">Buscar Libro</a> </td>
-                    <td><a class="button" href="/Profesor/AgregarLibro/@item.IdProfesor">Agregar Libro</a> </td>
+                    <td><a class="button" href="/Profesor/LibroProfesor/@item.IdProfesor"><i>Buscar Libro</i></a> </td>
+                    <td><a class="button" href="/Profesor/AgregarLibro/@item.IdProfesor"><i>Agregar Libro</i></a> </td>
                 </tr>
             }
         </tbody>

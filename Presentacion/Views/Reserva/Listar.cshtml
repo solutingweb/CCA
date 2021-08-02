@@ -9,8 +9,11 @@
 <div class="container">
     <br />
     <h1 style="text-align:center">Lista de Reservas</h1>
-    <td><a class="button" href="/Alumno/Listar">Crear</a> </td>
-    <table id="tblReservas" class="table-responsive-md" >
+    <hr />
+    <td><a class="row-cols-2 btn btn-primary btn-user btn-primary" href="/Alumno/Listar">Crear</a> </td>
+    <br />
+    <br />
+    <table id="tblReservas" class="table-responsive-md">
         <thead>
             <tr>
                 <th>ID</th>
@@ -28,18 +31,22 @@
         <tbody>
             @foreach (Negocio.N_Reserva item in Model)
             {
-<tr>
-    <td>@item.id_Reservas</td>
-    <td>@item.Apunte</td>
-    <td>@item.Fecha</td>
-    <td>@item.Nombre</td>
-    <td>@item.Apellido</td>
-    <td>@item.dni</td>
-    <td>@item.Reserva</td>
-    <td>@item.TipoEstado</td>
-    <td><a class="button" href="/Reserva/Entregar/@item.id_Reservas">Saldar</a> </td>
-    <td><a class="button" href="/Reserva/Eliminar/@item.id_Reservas">Eliminar</a> </td>
-</tr>            }
+            <tr>
+                <td>@item.id_Reservas</td>
+                <td>@item.Apunte</td>
+                <td>@item.Fecha</td>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td>@item.dni</td>
+                <td>@item.Reserva</td>
+                <td>@item.TipoEstado</td>
+                <td><a class="button" href="/Reserva/Saldar/@item.id_Reservas"><i>Saldar</i></a> </td>
+                <td>
+                   
+                    <a href="/Reserva/Eliminar/@item.id_Reservas" class="btn btn-danger btn-circle"> <i class="fas fa-trash"></i>  </a>
+                </td>
+            </tr>
+            }
         </tbody>
     </table>
 </div>

@@ -16,7 +16,7 @@ namespace Negocio
 
 
 
-        #region Private
+        #region Metodo privado
         private static N_Profesor ArmarDatos(DataRow dr)
         {
             N_Profesor Profesor = new N_Profesor();
@@ -29,12 +29,12 @@ namespace Negocio
             Profesor.Dni = dr["DNI"].ToString();
 
             return Profesor;
-        } 
+        }
         #endregion
 
 
 
-        #region public
+        #region Metodo publico
         public static List<N_Profesor> Listar()
         {
             List<N_Profesor> listaprofesores = new List<N_Profesor>();

@@ -6,9 +6,10 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
 
-<div class="container">
-    <br/>
+<div class="container">    
+    <br />
     <h1 style="text-align:center">Lista de libros del profesor</h1>
+    <hr />
 
     <table id="tblUsuarios" class="display">
         <thead>
@@ -27,7 +28,7 @@
 
                     <td>@item.IdProfesor</td>
                     <td>@item.NombreApunte</td>
-                    <td>@item.TipoEstado                   
+                    <td>@item.TipoEstado
                     <td>@item.Digitalizado</td>
                 </tr>
             }
@@ -35,7 +36,7 @@
     </table>
 </div>
 <div>
-    @Html.ActionLink("Volver a la lista de profesores", "Index")
+    @Html.ActionLink("Volver a la lista de profesores", "Listar")
 </div>
 
 <script>

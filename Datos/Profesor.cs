@@ -35,7 +35,7 @@ namespace Datos
             catch (Exception ex)
             {
 
-                throw new Exception("Error al obtener la lista de Usuarios: " + ex.Message);
+                throw new Exception("Error al obtener la lista de Profesores: " + ex.Message);
             }
 
         }

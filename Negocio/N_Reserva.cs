@@ -22,10 +22,8 @@ namespace Negocio
         public int dni { get; set; }
         public Negocio.Enumerables.Estados.EstadoReserva TipoEstado { get; set; }
 
-        #region MetodosPublicos
-        public N_Reserva()
-        {
-        }
+
+        #region MetodosPublicos        
         public static List<N_Reserva> ListarReservas()
         {
             List<N_Reserva> listareservas = new List<N_Reserva>();
@@ -36,7 +34,6 @@ namespace Negocio
             }
             return listareservas;
         }
-
         public void Insertar()
         {
             Datos.Reserva.Insertar(id_Alumno, id_Apuntes, Reserva);
@@ -45,14 +42,13 @@ namespace Negocio
         {
             Datos.Reserva.Eliminar(id);
         }
-        public static void Entregar(int id)
+        public static void Saldar(int id)
         {
-            Datos.Reserva.Entregar(id);
+            Datos.Reserva.Saldar(id);
         }
         #endregion
 
         #region MetodosPrivados
-
         private static N_Reserva ArmarDatosReserva(DataRow dr)
         {
             N_Reserva reserva = new N_Reserva();
@@ -63,15 +59,9 @@ namespace Negocio
             reserva.Apellido = dr["apellidos"].ToString();
             reserva.dni = Convert.ToInt32(dr["dni"]);
             reserva.Reserva = Convert.ToDouble(dr["reserva"]);
-            reserva.TipoEstado = (EstadoReserva)Convert.ToInt32(dr["entregado"]);
+            reserva.TipoEstado = (EstadoReserva)Convert.ToInt32(dr["saldado"]);
             return reserva;
         }
-
-        private void Editar()
-        {
-            Datos.Reserva.Editar(id_Reservas.Value);
-        }
-
         #endregion
 
     }

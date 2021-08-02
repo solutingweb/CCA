@@ -13,25 +13,32 @@ namespace Datos
     {
         public static DataTable Lista_ProfesorApunte(int id)
         {
-
-            var DataTable = new DataTable();
-
-            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+            try
             {
-                cn.Open();
 
-                SqlCommand cmd = new SqlCommand("ListaLibrosPorProfesor", cn);
-                
-                cmd.CommandType = CommandType.StoredProcedure;
-              
-                cmd.Parameters.Add(new SqlParameter("@Id", id));
+                var DataTable = new DataTable();
 
-                var dataReader = cmd.ExecuteReader();
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    cn.Open();
 
-                DataTable.Load(dataReader);
+                    SqlCommand cmd = new SqlCommand("ListaLibrosPorProfesor", cn);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@Id", id));
+
+                    var dataReader = cmd.ExecuteReader();
+
+                    DataTable.Load(dataReader);
+                }
+
+                return DataTable;
             }
-
-            return DataTable;
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de Libros: " + ex.Message);
+            }
 
         }
            
@@ -80,14 +87,10 @@ namespace Datos
                 {
                     using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexión"].ConnectionString))
                     {
-                        cn.Open();
-
-                        
+                        cn.Open();                        
                         SqlCommand cmd = new SqlCommand("Libro_Editar", cn);
                         
                         cmd.CommandType = CommandType.StoredProcedure;
-
-                        // 3. Agrego el Valor al Procedimiento almacenado
                         cmd.Parameters.Add(new SqlParameter("@id_ProfesorApunter", id_ProfesorApunter));
                         cmd.Parameters.Add(new SqlParameter("@Id_Profesor", id_Profesor));
                         cmd.Parameters.Add(new SqlParameter("@NombreApunte", nombreApunte));
@@ -109,25 +112,32 @@ namespace Datos
         public static DataTable Profesor_Obtener(int id)
         {
 
-            var DataTable = new DataTable();
-
-            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+            try
             {
-                cn.Open();
+                var DataTable = new DataTable();
 
-                
-                SqlCommand cmd = new SqlCommand("Profesor_Obtener", cn);
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conexion"].ConnectionString))
+                {
+                    cn.Open();
 
-                cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@id", id));
+                    SqlCommand cmd = new SqlCommand("Profesor_Obtener", cn);
 
-                var dataReader = cmd.ExecuteReader();
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                DataTable.Load(dataReader);
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
+
+                    var dataReader = cmd.ExecuteReader();
+
+                    DataTable.Load(dataReader);
+                }
+
+                return DataTable;
             }
-
-            return DataTable;
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el profesor: " + ex.Message);
+            }
 
         }
         
@@ -148,7 +158,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("error ListarProfesorApunteNOdigitalizado" + ex.Message);
+                throw new Exception("Error ListarProfesorApunteNOdigitalizado" + ex.Message);
             }
 
         }
@@ -169,7 +179,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("error Digitalizar" + ex.Message);
+                throw new Exception("Error al Digitalizar" + ex.Message);
             }
 
         }

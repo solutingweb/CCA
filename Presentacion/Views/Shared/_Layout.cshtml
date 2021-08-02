@@ -43,31 +43,29 @@
 <body>
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!--Sidebar - Brand-->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/Usuario/Index">
+                      
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/Usuario/Listar">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-print"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Centro de Copiado</div>
             </a>
-
-            <!--Divider-->
+         
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link" href="~/Profesor/Index/">
+                <a class="nav-link" href="~/Profesor/Listar/">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Profesores</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            @*<li class="nav-item">
                 <a class="nav-link" href="~/Alumno/Listar/">
-                    <i class="fas fa-fw fa-hand-holding-usd"></i>
+                    <i class="fas fa-child"></i>
                     <span>Alumno</span>
                 </a>
-            </li>
+            </li>*@
 
             <li class="nav-item">
                 <a class="nav-link" href="~/Apunte/Listar/">
@@ -77,21 +75,21 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="~/Reserva/Index/">
+                <a class="nav-link" href="~/Reserva/Listar/">
                     <i class="fas fa-fw fa-bookmark"></i>
                     <span>Reservas</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="~/Escaneo/Index/">
+                <a class="nav-link" href="~/Escaneo/Listar/">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Escaneo</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="~/Venta/Index/">
+                <a class="nav-link" href="~/Venta/Listar/">
                     <i class="fas fa-fw fa-hand-holding-usd"></i>
                     <span>Ventas</span>
                 </a>
@@ -101,7 +99,7 @@
             {
                 <li class="nav-item">
                     <a class="nav-link" href="~/Usuario/Admin/">
-                        <i class="fas fa-fw fa-times"></i>
+                        <i class="fas fa-users-cog"></i>
                         <span>Administrar Usuarios</span>
                     </a>
                 </li>

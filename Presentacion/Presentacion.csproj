@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\ApunteController.cs" />
+    <Compile Include="Controllers\ErroresController.cs" />
     <Compile Include="Controllers\EscaneoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
@@ -1983,10 +1984,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Listar.cshtml" />
     <Content Include="Views\Apunte\Listar.cshtml" />
-    <Content Include="Views\Escaneo\Index.cshtml" />
-    <Content Include="Views\Profesor\Index.cshtml" />
+    <Content Include="Views\Escaneo\Listar.cshtml" />
+    <Content Include="Views\Profesor\Listar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2002,14 +2003,16 @@
     <Content Include="Views\Profesor\LibroProfesor.cshtml" />
     <Content Include="Views\Profesor\AgregarLibro.cshtml" />
     <Content Include="Views\Escaneo\AgregarApunte.cshtml" />
-    <Content Include="Views\Venta\Index.cshtml" />
-    <Content Include="Views\Reserva\Index.cshtml" />
+    <Content Include="Views\Venta\Listar.cshtml" />
+    <Content Include="Views\Reserva\Listar.cshtml" />
     <Content Include="Views\Usuario\Admin.cshtml" />
     <Content Include="Views\Usuario\AgregarUsuario.cshtml" />
     <Content Include="Views\Usuario\EditarUsuario.cshtml" />
     <Content Include="Views\Apunte\AgregarCarrito.cshtml" />
     <Content Include="Views\Alumno\Listar.cshtml" />
     <Content Include="Views\Reserva\Agregar.cshtml" />
+    <Content Include="Views\Errores\Error.cshtml" />
+    <None Include="Properties\PublishProfiles\CentroCopiado.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

@@ -1,40 +1,46 @@
 ﻿@model Negocio.N_ProfesorApunte
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro Copiado</title>
+</head>
 
+<body>
+    <br/>
+    <h1 style="text-align:center">Crear libro</h1> 
+    <div class="container">        
+        <hr />
+        <br />
+        <div class="card shadow mb-4">
+            <form action="/Profesor/Insertar" method="post">
 
-<div class="container">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Identificador de Profesor</h6>                    
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.IdProfesor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
 
-    <br />
-    <h1 style="text-align:center">Crear libro</h1>
-
-    <form action="/Profesor/Insertar" method="post" onsubmit="return">
-        <div class=" form-group">
-            <label for="Nombre" class="control-label col-md-3">Identificador de Profesor</label>
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.IdProfesor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                
-            </div>
+                <div class="card-header py-3">                   
+                    <h6 class="m-0 font-weight-bold text-primary">Escriba el nombre del Libro :</h6>
+                    <div class="col-md-3">
+                        <input type="text" id="NombreApunte" name="NombreApunte" class="form-control" required/>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-3 left col-md-10">
+                        <input type="submit" id="Correcto" value="Crear" class="btn btn-info">
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class=" form-group">
-            <label for="NombreApunte" class="control-label col-md-3">Escriba el nombre del Libro :</label>
-            <div class="col-md-3">
-                <input type="text" id="NombreApunte" name="NombreApunte" class="form-control" />                
-            </div>
-        </div>           
-                              
-
-        <div class=" form-group">
-            <div class="col-md-offset-3 left col-md-10">
-                <input type="submit" id="Correcto" value="Crear" class="btn btn-info">
-            </div>
+        <div>
+            @Html.ActionLink("Volver a la lista de profesores", "Listar")
         </div>
-            
-    
-    </form>
-    <div>
-        @Html.ActionLink("Volver a la lista de profesores", "Index")
     </div>
+</body>
 
-</div>
-
+</html>

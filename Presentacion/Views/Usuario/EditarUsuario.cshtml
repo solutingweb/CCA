@@ -22,7 +22,7 @@ FormMethod.Post
             <div class="form-group">
                 <label Class="control-label col-md-2">Nombre</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @type = "text", @id = "TxtNombre", @class = "form-control" } })
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @type = "text", @id = "TxtNombre", @class = "form-control"} })
                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -43,7 +43,7 @@ FormMethod.Post
             <div class="form-group">
                 <label Class="control-label col-md-2">Usuario</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @type = "text", @id = "NumPeso", @class = "form-control" } })
+                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @type = "text", @id = "NumPeso", @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
                     <div class="col-md-10" id="ErroresP"></div><br />
                 </div>
@@ -51,7 +51,7 @@ FormMethod.Post
             <div class="form-group">
                 <label Class="control-label col-md-2">Passwords</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Passwords, new { htmlAttributes = new { @id = "NumAltura", @class = "form-control", @type = "password" } })
+                    @Html.EditorFor(model => model.Passwords, new { htmlAttributes = new { @id = "NumAltura", @class = "form-control", @type = "password", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Passwords, "", new { @class = "text-danger" })
                     <div class="col-md-10" id="ErroresA"></div><br />
                 </div>

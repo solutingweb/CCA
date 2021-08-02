@@ -9,12 +9,13 @@
         data: {},
         success: function (result) {
             if (result.Mensaje == 'Venta Carrito OK') {
-                Swal.fire({
-                    title: 'Satifactorio',
-                    text: 'Venta realizada',
-                    icon: 'success',
+               Swal.fire({
+                    title: 'Venta Realizada',
+                    icon: 'question',
+                    timer: 5000,
+                    timerProgressBar: true,                   
                     confirmButtonText: '¡Sí!',
-                    timer: 150000,
+                                 
                 })
                 $(location).attr('href', '/Apunte/Listar');
             }
@@ -26,8 +27,8 @@
                     icon: 'error',
                 })
                 $(location).attr('href', '/Apunte/Listar');
-            }
-        }
+            }           
+        }        
     });
 }
 

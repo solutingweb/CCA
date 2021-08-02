@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class Alumno
+    public class Venta
     {
         public static DataTable Listar()
         {
@@ -21,7 +21,7 @@ namespace Datos
                 {
                     cn.Open();
                                         
-                    SqlCommand cmd = new SqlCommand("Alumno_Listar", cn);
+                    SqlCommand cmd = new SqlCommand("Ventas_Listar", cn);
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -34,7 +34,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener la lista de Alumno: " + ex.Message);
+                throw new Exception("Error al obtener la lista de Venta: " + ex.Message);
             }
 
         }

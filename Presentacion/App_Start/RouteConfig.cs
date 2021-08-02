@@ -18,6 +18,14 @@ namespace Presentacion
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "Error",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Errores", action = "Error", id = UrlParameter.Optional }
+            );
         }
     }
 }

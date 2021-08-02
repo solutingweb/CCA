@@ -26,13 +26,14 @@ namespace Negocio
 
         [Required(ErrorMessage = "Seleccione un Estado [Estado]")]
         public byte estado { get; set; }
+        public float precio { set; get; } 
+        public Estados.ListarApuntes estadoApunte { set; get; }
+        public Estados estadosApuntes { set; get; } 
 
-        public float precio { set; get; } /*Agregado Ariel Coronel - 18.06.2021*/
+       
 
-        public Estados.ListarApuntes estadoApunte { set; get; } /*Agregado Ariel Coronel - 18.06.2021*/
-        public Estados estadosApuntes { set; get; } /*Agregado Ariel Coronel - 18.06.2021*/
 
-        /*Agregado Ariel Coronel - 18.06.2021*/
+
         #region Metodos Privados
         private static N_Apunte ArmarDatos(DataRow dr)
         {
@@ -65,30 +66,14 @@ namespace Negocio
             }
             return listApuntes;
         }
-
-        public static List<N_Apunte> ListarApuntesPorId(int idApuntes)
-        {
-            List<N_Apunte> apuntePorID = new List<N_Apunte>();
-            DataTable dt = Datos.Apunte.ListarApuntesPorID(idApuntes);
-
-            foreach (DataRow item in dt.Rows)
-            {
-                apuntePorID.Add(ArmarDatos(item));
-            }
-            return apuntePorID;
-        }
-
-        public void Grabar()
-        {
-
-        }
-
-        #endregion
-
         public int InsertarApunte()
         {
             return Datos.Apunte.Insertar(tituloApunte, Stock, cantidadHojas, estado);
         }
+
+        #endregion
+
+       
 
 
     }

@@ -8,46 +8,78 @@ using Negocio;
 namespace Presentacion.Controllers
 {
     public class ReservaController : Controller
-    {
-        
-        public ActionResult Index()
+    {        
+        public ActionResult Listar()
         {
-            List<N_Reserva> listareserva = N_Reserva.ListarReservas();
-            return View(listareserva);
+            try
+            {
+                List<N_Reserva> listareserva = N_Reserva.ListarReservas();
+                return View(listareserva);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
+            }
         }        
 
         public ActionResult Agregar(int id)
         {
-            N_Reserva reserva = new N_Reserva();
-            reserva.id_Alumno = (int)Session["idAlumno"];
-            reserva.id_Apuntes = id;           
-            return View(reserva);
+            try
+            {
+                N_Reserva reserva = new N_Reserva();
+                reserva.id_Alumno = (int)Session["idAlumno"];
+                reserva.id_Apuntes = id;
+                return View(reserva);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
+            }
         }
 
         [HttpPost]
         public ActionResult Insertar(N_Reserva reservas)
         {
+            try
+            {
+                reservas.id_Alumno = Convert.ToInt32(Request.Form["id_Alumno"]);
+                reservas.id_Apuntes = Convert.ToInt32(Request.Form["id_Apuntes"]);
+                reservas.Reserva = Convert.ToDouble(Request.Form["Reserva"]);
+                reservas.Insertar();
 
-            reservas.id_Alumno = Convert.ToInt32(Request.Form["id_Alumno"]);
-            reservas.id_Apuntes = Convert.ToInt32(Request.Form["id_Apuntes"]);
-            reservas.Reserva = Convert.ToDouble(Request.Form["Reserva"]);           
-            reservas.Insertar();
-
-            return RedirectToAction("Index", "Reserva");           
+                return RedirectToAction("Listar", "Reserva");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
+            }        
         }
 
         public ActionResult Eliminar(int id)
         {
-            N_Reserva reserva = N_Reserva.ListarReservas().Where(x => x.id_Reservas == id).FirstOrDefault();
-            N_Reserva.Eliminar(id);            
-            return View("Index", N_Reserva.ListarReservas());
+            try
+            {
+                N_Reserva reserva = N_Reserva.ListarReservas().Where(x => x.id_Reservas == id).FirstOrDefault();
+                N_Reserva.Eliminar(id);
+                return View("Listar", N_Reserva.ListarReservas());
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
+            }
         }
-        public ActionResult Entregar(int id)
+        public ActionResult Saldar(int id)
         {
-            N_Reserva reserva = N_Reserva.ListarReservas().Where(x => x.id_Reservas == id).FirstOrDefault();
-            N_Reserva.Entregar(id);
-            //cliente.RegistrarBajaCliente();
-            return View("Index", N_Reserva.ListarReservas());
+            try
+            {
+                N_Reserva reserva = N_Reserva.ListarReservas().Where(x => x.id_Reservas == id).FirstOrDefault();
+                N_Reserva.Saldar(id);
+                return View("Listar", N_Reserva.ListarReservas());
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Errores", new { @mensaje = ex.Message });
+            }
         }
     }
 }

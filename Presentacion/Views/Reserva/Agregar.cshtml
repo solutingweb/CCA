@@ -1,48 +1,54 @@
 ﻿@model Negocio.N_Reserva
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro Copiado</title>
+</head>
 
-
-<div class="container">
-
+<body>
     <br />
     <h1 style="text-align:center">Crear Reserva</h1>
+    <div class="container">
+        <hr />
+        <br />
+        <div class="card shadow mb-4">
+            <form action="~/Reserva/Insertar" method="post" onsubmit="return">
 
-    <form action="~/Reserva/Insertar" method="post" onsubmit="return">
-        <div class=" form-group">
-            <label for="Nombre" class="control-label col-md-3">Identificador de Alumno</label>
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.id_Alumno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <div class="card-header py-3">
+                    <h6 for="Nombre" class="m-0 font-weight-bold text-primary">Identificador de Alumno</h6>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.id_Alumno, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <h6 for="Nombre" class="m-0 font-weight-bold text-primary">Identificador de Apunte</h6>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.id_Apuntes, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
 
-            </div>
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <h6 for="NombreApunte" class="m-0 font-weight-bold text-primary">Escriba el monto de la reserva :</h6>
+                    <div class="col-md-3">
+                        <input type="number" id="Reserva" name="Reserva" class="form-control" required />
+                    </div>
+                </div>
+                <br />
+                <div class=" form-group">
+                    <div class="col-md-offset-3 left col-md-10">
+                        <input type="submit" id="Correcto" value="Crear" class="btn btn-info">
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class=" form-group">
-            <label for="Nombre" class="control-label col-md-3">Identificador de Apunte</label>
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.id_Apuntes, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-            </div>
+        <div>
+            @Html.ActionLink("Volver a la lista de reservas", "Listar")
         </div>
-
-        <div class=" form-group">
-            <label for="NombreApunte" class="control-label col-md-3">Escriba el monto de la reserva :</label>
-            <div class="col-md-3">
-                <input type="number" id="Reserva" name="Reserva" class="form-control" />
-            </div>
-        </div>
-
-
-        <div class=" form-group">
-            <div class="col-md-offset-3 left col-md-10">
-                <input type="submit" id="Correcto" value="Crear" class="btn btn-info">
-            </div>
-        </div>
-
-
-    </form>
-    <div>
-        @Html.ActionLink("Volver a la lista de profesores", "Index")
     </div>
+</body>
 
-</div>
+</html>
+
 

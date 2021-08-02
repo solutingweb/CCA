@@ -31,12 +31,10 @@ namespace Negocio
             else
                 return false;
         }
-
         private static void Agregar(int idApunte, string tituloApuntes, float precioApuntes, DateTime fecha)
         {
             Datos.CarroApuntes.Agregar(idApunte, tituloApuntes, precioApuntes, fecha);
         }
-
 
         #endregion
 
@@ -58,9 +56,6 @@ namespace Negocio
             }
             return carritoApuntes;
         }
-
-        #endregion
-
         public void Grabar(int idApunte, string tituloApuntes, float precioApuntes, DateTime fecha)
         {
             if (Validar(tituloApuntes, precioApuntes, out string error))
@@ -71,8 +66,10 @@ namespace Negocio
                     transacion.Complete();
                 }
             }
-            //throw new NotImplementedException();
-
+            
         }
+        #endregion
+
+        
     }
 }
