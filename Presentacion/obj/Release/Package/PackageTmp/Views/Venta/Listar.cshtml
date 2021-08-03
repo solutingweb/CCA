@@ -1,0 +1,43 @@
+﻿@model List<Negocio.N_Venta>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+<div class="container">
+    <br />
+    <h1 style="text-align:center">Listado de Ventas</h1>
+    <hr />
+
+    <table id="tblVentas" class="display">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Titulo Apunte</th>
+                <th>Precio Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Negocio.N_Venta item in Model)
+            {
+                <tr>
+                    <td>@item.fecha.ToString("dd/mm/yyyy")</td>
+                    <td>@item.tituloApuntes</td>
+                    <td>@item.precioApuntes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="float-right">@Html.ActionLink("Volver a Inicio", "Listar", "Usuario", null, null)</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#tblVentas').DataTable(
+            {
+
+            }
+        );
+    });
+</script>

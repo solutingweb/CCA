@@ -1,0 +1,6 @@
+C:\Users\emman\source\repos\CCA\Datos\bin\Release\Datos.dll
+C:\Users\emman\source\repos\CCA\Datos\bin\Release\Datos.pdb
+C:\Users\emman\source\repos\CCA\Datos\obj\Release\Datos.csprojAssemblyReference.cache
+C:\Users\emman\source\repos\CCA\Datos\obj\Release\Datos.csproj.CoreCompileInputs.cache
+C:\Users\emman\source\repos\CCA\Datos\obj\Release\Datos.dll
+C:\Users\emman\source\repos\CCA\Datos\obj\Release\Datos.pdb

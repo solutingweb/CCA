@@ -1,0 +1,51 @@
+﻿
+@model List<Negocio.N_ProfesorApunte>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
+<div class="container">    
+    <br />
+    <h1 style="text-align:center">Lista de libros del Profesores</h1>
+    <hr />
+
+    <table id="tblUsuarios" class="display">
+        <thead>
+            <tr>
+
+                <th>Identificador</th>
+                <th>Nombre del Apunte</th>
+                <th>Estado</th>
+                <th>Digitalizado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Negocio.N_ProfesorApunte item in Model)
+            {
+                <tr>
+
+                    <td>@item.IdProfesor</td>
+                    <td>@item.NombreApunte</td>
+                    <td>@item.TipoEstado
+                    <td>@item.Digitalizado</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Volver a la lista de profesores", "Listar")
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#tblUsuarios').DataTable(
+            {
+              
+            }
+        );
+    });
+</script>

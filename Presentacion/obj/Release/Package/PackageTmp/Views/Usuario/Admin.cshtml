@@ -1,0 +1,84 @@
+﻿@model List<Negocio.N_Usuario>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Centro Copiado</title>   
+</head>
+
+<body>
+
+    <div class="container">
+        <br />
+        <h1 style="text-align:center">Administración de Usuarios</h1>
+        <hr/>
+        <div class="col-md-12">
+            <table id="Admin" class="table">
+                <thead>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Nombre de Usuario</th>
+                <th>Contraseña</th>
+                <th>Tipo de Usuario</th>
+                <th>Estado</th>
+                <th>Editar</th>
+                </thead>
+                <tbody>
+                    @foreach (Negocio.N_Usuario item in Negocio.N_Usuario.Listar())
+                    {
+                        <tr>
+                            <td>
+                                @item.Apellido
+                            </td>
+                            <td>
+                                @item.Nombre
+                            </td>
+                            <td>
+                                @item.Telefono
+                            </td>
+                            <td>
+                                @item.Usuario
+                            </td>
+                            <td>
+                                @item.Passwords
+                            </td>
+                            <td>
+                                @item.Estado
+                            </td>
+                            <td>
+                                @item.TipoPerfil
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="/Usuario/EditarUsuario/@item.IdUsuario">Modificar</a>
+                            </td>
+                        </tr>
+                    }
+            </table>
+            <div class="col-md-12">
+                <a class="btn btn-primary" href="/Usuario/AgregarUsuario">Agregar Usuario Nuevo</a>
+                <a class="btn btn-primary  float-right" href="/Usuario/Listar">Volver al Menú</a>
+                <hr />
+            </div>          
+            @*<div class="col-md-12">
+                <a class="btn btn-primary" href="/Usuario/Index">Volver al Menú</a>
+            </div>*@
+        </div>
+    </div>
+
+        @section scripts {
+            <script>
+                $(document).ready(function () {
+                    $('#Admin').DataTable(
+                        {
+                            paging: 10,
+                            pageLength: 10,
+                            lengthMenu: [5, 10, 15, 20, 25, 50]
+                        }
+                    );
+                });
+            </script>
+        }
+</body>
+
+</html>

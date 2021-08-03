@@ -1,0 +1,52 @@
+﻿@model List<Negocio.N_Profesor>
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
+<div class="container">
+    <br/>
+    <h1 style="text-align:center">Lista de Profesores</h1>
+    <hr/>
+
+    <table id="tblUsuarios" class="display">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Dni</th>
+                <th>Estado</th>
+                <th>Buscar Libro</th>
+                <th>Agregar Libro</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Negocio.N_Profesor item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Apellido</td>
+                    <td>@item.Email</td>
+                    <td>@item.Dni</td>
+                    <td>@item.Estado</td>
+                    <td><a class="button" href="/Profesor/LibroProfesor/@item.IdProfesor"><i>Buscar Libro</i></a> </td>
+                    <td><a class="button" href="/Profesor/AgregarLibro/@item.IdProfesor"><i>Agregar Libro</i></a> </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#tblUsuarios').DataTable(
+            {
+                
+            }
+        );
+    });
+</script>

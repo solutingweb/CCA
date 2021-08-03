@@ -1,0 +1,60 @@
+﻿@model List<Negocio.N_Reserva>
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+
+<div class="container">
+    <br />
+    <h1 style="text-align:center">Lista de Reservas</h1>
+    <hr />
+    <td><a class="row-cols-2 btn btn-primary btn-user btn-primary" href="/Alumno/Listar">Crear</a> </td>
+    <br />
+    <br />
+    <table id="tblReservas" class="table-responsive-md">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apunte</th>
+                <th>Fecha registro</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dni</th>
+                <th>Reserva</th>
+                <th>Estado</th>
+                <th>Saldar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Negocio.N_Reserva item in Model)
+            {
+            <tr>
+                <td>@item.id_Reservas</td>
+                <td>@item.Apunte</td>
+                <td>@item.Fecha</td>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td>@item.dni</td>
+                <td>@item.Reserva</td>
+                <td>@item.TipoEstado</td>
+                <td><a class="button" href="/Reserva/Entregar/@item.id_Reservas"><i>Saldar</i></a> </td>
+                <td>
+                   
+                    <a href="/Reserva/Eliminar/@item.id_Reservas" class="btn btn-danger btn-circle"> <i class="fas fa-trash"></i>  </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>$(document).ready(function () {
+
+        $('#tblReservas').DataTable(
+            {
+
+            }
+        );
+    });</script>

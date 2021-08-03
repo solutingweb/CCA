@@ -1,0 +1,9 @@
+C:\Users\emman\source\repos\CCA\Negocio\bin\Debug\Negocio.dll
+C:\Users\emman\source\repos\CCA\Negocio\bin\Debug\Negocio.pdb
+C:\Users\emman\source\repos\CCA\Negocio\bin\Debug\Datos.dll
+C:\Users\emman\source\repos\CCA\Negocio\bin\Debug\Datos.pdb
+C:\Users\emman\source\repos\CCA\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+C:\Users\emman\source\repos\CCA\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\emman\source\repos\CCA\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\emman\source\repos\CCA\Negocio\obj\Debug\Negocio.dll
+C:\Users\emman\source\repos\CCA\Negocio\obj\Debug\Negocio.pdb

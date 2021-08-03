@@ -1,0 +1,94 @@
+﻿@model List<Negocio.N_Apunte>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro Copiado - Listado de Apuntes</title>
+</head>
+
+<body>
+    <br />
+    <h1 style="text-align:center">Lista de Apuntes</h1>
+    <hr />
+
+    @if (Session["NombreAlumno"] != null)
+    {
+        <div>Nombre Alumno: @Session["NombreAlumno"]</div>
+
+    }
+
+    @if (Session["AcumuladoCarrito"] != null)
+    {           
+        <br />
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Acumulado Carrito $: @Session["AcumuladoCarrito"]</h1>
+            <a href="~/Apunte/AgregarCarrito" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-shopping-cart fa-sm text-white-50"></i> Ver Carrito
+            </a>
+        </div>
+    }
+
+    <div class="container">
+        <table id="table_id" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID Apunte</th>
+                    <th>Titulo Apunte</th>
+                    <th>Stock</th>
+                    <th>Cantidad Hojas</th>
+                    <th>Precio Apunte</th>
+                    <th>Estado</th>
+                    <th>Accion</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Negocio.N_Apunte item in Model)
+                {
+                    <tr>
+                        <td>@item.id_Apuntes</td>
+                        <td>@item.tituloApunte</td>
+                        <td>@item.Stock</td>
+                        <td>@item.cantidadHojas</td>
+                        <td>@item.precio</td>
+                        <td>@item.estadoApunte</td>
+                        <td>
+                            @if (@item.Stock != 0 && Session["NombreAlumno"] == null)
+                            {
+                                @Html.ActionLink("Unir al carrito", "AgregarCarrito", "Apunte", new { id = @item.id_Apuntes }, new { @class = "rounded - circle border - 0" })
+                            }
+                            else if (@item.Stock == 0)
+                            { <p>SIN STOCK</p>}
+                        </td>
+                        <td>
+                            @if (Session["NombreAlumno"] != null)
+                            {
+                                @Html.ActionLink("Reservar", "Agregar", "Reserva", new { id = @item.id_Apuntes }, new { @class = "rounded - circle border - 0" })
+                            }
+                        </td>
+
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#table_id').DataTable(
+                    {
+                        paging: 10,
+                        pageLength: 10,
+                        lengthMenu: [5, 10, 15, 20, 25, 50]
+                    }
+                );
+            });
+        </script>
+    }
+</body>
+</html>

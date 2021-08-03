@@ -1,0 +1,79 @@
+﻿@model Negocio.N_Usuario
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro Copiado</title>
+</head>
+
+<body>
+    <br />
+    <h1 style="text-align:center">Agregar Usuario</h1>
+    <div class="container">
+        <hr />
+        <br />
+        <div class="card shadow mb-4">
+            <form action="/Usuario/IngresarUsuario" method="post">
+
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">ID</h6>
+                    <div class="col-md-3">
+                        <input class="form-control text-box single-line" id="IdUsuario" type="number" required name="IdUsuario" readonly />
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Apellido</h6>
+                    <div class="col-md-3">
+                        <input class="form-control text-box single-line" id="Apellido" type="text" required name="Apellido" maxlength="20" />
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Nombre</h6>
+                    <div class="col-md-3">
+                        <input class="form-control text-box single-line" id="Nombre" type="text" required name="Nombre" maxlength="20" />
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Telefono</h6>
+                    <div class="col-md-3">
+                        <input class="form-control text-box single-line" id="Telefono" type="number" required name="Telefono" maxlength="15" />
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Nombre de Usuario</h6>
+                    <div class="col-md-3">
+                        <input class="form-control text-box single-line" id="Usuario" name="Usuario" type="text" required maxlength="20" />
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Contraseña</h6>
+                    <div class="col-md-3">
+                        <input class="form-control text-box single-line" id="Passwords" type="password" required name="Passwords" maxlength="20" />
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <div class="col-md-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Estado</h6>
+                        @Html.EnumDropDownListFor(Model => Model.Estado, new { @name = "txtEstado", @class = "form-control" })<br />
+                    </div>
+                </div>
+                <div class="card-header py-3">
+                    <div class="col-md-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Perfil</h6>
+                        @Html.EnumDropDownListFor(Model => Model.TipoPerfil, new { @name = "txtTipoPerfil", @class = "form-control" })<br />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-3 left col-md-10">
+                        <input type="submit" id="Correcto" value="Agregar" class="btn btn-info">
+                    </div>
+                </div> 
+            </form>
+        </div>
+        <div>
+            @Html.ActionLink("Volver a la lista de usuairos", "Listar")
+        </div>
+    </div>       
+</body>
+</html>

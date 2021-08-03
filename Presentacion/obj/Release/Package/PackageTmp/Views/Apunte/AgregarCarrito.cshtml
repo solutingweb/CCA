@@ -1,0 +1,84 @@
+﻿@model Negocio.N_CarroApuntes
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Centro Copiado - Carrito de Apuntes</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/AgregarCarritos.js"></script>
+</head>
+
+<body>
+
+    <div class="card-header"><h1 class="text-lg-center">Apuntes a Comprar</h1></div>
+
+    <br />
+    <br />
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+            @if (Session["Apuntes"] != null)
+            {
+                <div><a class="row-cols-2 btn btn-primary btn-user btn-danger" onclick="VaciarCarrito()">  VACIAR CARRITO  </a> &nbsp; </div>
+                <div><a class="cols-xl-3 btn btn-primary btn-user btn-info" onclick="CarritoGrabar()">  FINALIZAR COMPRA  </a></div>}
+        </div>
+    </div>
+
+    <br />
+    <hr>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h3 class="h3 mb-0 text-gray-800">Acumulado Carrito $: @Session["AcumuladoCarrito"]</h3>
+        <div class="float-right">@Html.ActionLink("Volver a Listado Apuntes", "Listar", "Apunte", null, null)</div>
+    </div>
+    <hr>
+    <br />
+    <br />
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>ID Articulo</th>
+                <th>Titulo</th>
+                <th>Precio</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Session["Apuntes"] != null)
+            {
+                var listadoApuntes = Session["Apuntes"] as List<Negocio.N_CarroApuntes>;
+                foreach (var item in listadoApuntes)
+                {
+                    <tr>
+                        <td>@item.idApuntes</td>
+                        <td>@item.tituloApuntes</td>
+                        <td>@String.Format("{0:C}", @item.precioApuntes)</td>
+                        <td>@Html.ActionLink("Quitar del Carrito", "QuitarCarrito", "Apunte", new { id = @item.idApuntes }, new { @class = "rounded - circle border - 0" })</td>
+                    </tr>
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>NO HAY REGISTROS</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>        
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable(
+                {
+
+                }
+            );
+        });
+    </script>
+
+</body>
+</html>
